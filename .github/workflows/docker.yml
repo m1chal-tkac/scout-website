@@ -5,10 +5,6 @@ on:
     branches:
       - docker
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -23,7 +19,7 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,4 +29,4 @@ jobs:
           file: docker/nashuro-base/DockerFile
           context: backend
           push: true
-          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+          tags: michal124/nashuro:latest
