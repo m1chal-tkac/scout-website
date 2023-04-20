@@ -4,7 +4,8 @@
   "info": {
     "singularName": "uvodni-stranka",
     "pluralName": "uvodni-stranky",
-    "displayName": "Úvodní stránka"
+    "displayName": "Úvodní stránka",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -12,12 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "Obrazek": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Slogan": {
       "type": "string",
@@ -31,11 +32,6 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::oddil.oddil"
-    },
-    "novinky": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::novinka.novinka"
     },
     "Kontakty": {
       "type": "component",
