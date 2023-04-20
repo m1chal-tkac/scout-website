@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "druziny",
+  "info": {
+    "singularName": "druzina",
+    "pluralName": "druziny",
+    "displayName": "Družiny",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Obrazek": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "Nazev": {
+      "type": "string",
+      "required": true
+    },
+    "Url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Typ": {
+      "type": "string",
+      "required": true
+    },
+    "Popis": {
+      "type": "richtext",
+      "required": true
+    },
+    "Kontakty": {
+      "displayName": "Kontakt",
+      "type": "component",
+      "repeatable": true,
+      "component": "default.kontakt",
+      "required": true
+    },
+    "oddil": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::oddil.oddil",
+      "inversedBy": "druziny"
+    }
+  }
+}

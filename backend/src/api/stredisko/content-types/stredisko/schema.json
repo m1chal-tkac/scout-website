@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "strediska",
+  "info": {
+    "singularName": "stredisko",
+    "pluralName": "strediska",
+    "displayName": "Středisko"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nazev": {
+      "type": "string",
+      "required": true
+    },
+    "CelyNazev": {
+      "type": "string",
+      "required": true
+    },
+    "Sidlo": {
+      "type": "string",
+      "required": true
+    },
+    "CisloStrediska": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{3}\\.\\d{2}$"
+    },
+    "Ico": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{3} \\d{2} \\d{3}$"
+    },
+    "CisloUctu": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{10}\\/\\d{4}$"
+    },
+    "SocialniSite": {
+      "type": "component",
+      "repeatable": true,
+      "component": "default.socialni-sit",
+      "required": false
+    }
+  }
+}

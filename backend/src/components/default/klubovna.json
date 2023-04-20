@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_default_klubovnas",
+  "info": {
+    "displayName": "Klubovna"
+  },
+  "options": {},
+  "attributes": {
+    "Obrazky": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": false
+    },
+    "Nazev": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Adresa": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Kod": {
+      "type": "text",
+      "required": true
+    },
+    "spravce": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::jeden-vedouci.jeden-vedouci"
+    }
+  }
+}

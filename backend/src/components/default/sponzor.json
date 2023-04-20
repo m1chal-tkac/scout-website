@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_default_sponzors",
+  "info": {
+    "displayName": "Sponzor"
+  },
+  "options": {},
+  "attributes": {
+    "Obrazek": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "Nazev": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Odkaz": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

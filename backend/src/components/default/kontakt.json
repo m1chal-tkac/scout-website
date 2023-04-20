@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_default_kontakts",
+  "info": {
+    "displayName": "Kontakt"
+  },
+  "options": {},
+  "attributes": {
+    "Funkce": {
+      "type": "string",
+      "required": true
+    },
+    "vedouci": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::jeden-vedouci.jeden-vedouci"
+    }
+  }
+}

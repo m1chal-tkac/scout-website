@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "novinky",
+  "info": {
+    "singularName": "novinka",
+    "pluralName": "novinky",
+    "displayName": "Novinky",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Obrazek": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Nazev": {
+      "type": "string",
+      "required": true
+    },
+    "Url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Popis": {
+      "type": "text",
+      "required": true
+    },
+    "Text": {
+      "type": "richtext",
+      "required": true
+    },
+    "oddil": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::oddil.oddil",
+      "inversedBy": "novinky"
+    }
+  }
+}

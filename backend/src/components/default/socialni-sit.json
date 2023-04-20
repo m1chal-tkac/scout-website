@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_default_socialni_sit",
+  "info": {
+    "displayName": "Sociální síť"
+  },
+  "options": {},
+  "attributes": {
+    "Typ": {
+      "type": "enumeration",
+      "enum": [
+        "Instagram",
+        "Facebook"
+      ]
+    },
+    "Odkaz": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

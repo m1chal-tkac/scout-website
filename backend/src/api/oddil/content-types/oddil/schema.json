@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "oddily",
+  "info": {
+    "singularName": "oddil",
+    "pluralName": "oddily",
+    "displayName": "Oddíly",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Obrazek": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Nazev": {
+      "type": "string",
+      "required": true
+    },
+    "Url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Typ": {
+      "type": "enumeration",
+      "enum": [
+        "dívčí oddíl",
+        "chlapecký oddíl",
+        "koedukovaný oddíl",
+        "roverský kmen"
+      ],
+      "required": true
+    },
+    "Popis": {
+      "type": "richtext",
+      "required": true
+    },
+    "Kontakty": {
+      "type": "component",
+      "repeatable": true,
+      "component": "default.kontakt",
+      "required": true
+    },
+    "novinky": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::novinka.novinka",
+      "mappedBy": "oddil"
+    },
+    "druziny": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::druzina.druzina",
+      "mappedBy": "oddil"
+    }
+  }
+}
