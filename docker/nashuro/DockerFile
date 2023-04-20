@@ -1,0 +1,8 @@
+FROM ghcr.io/michal124/nashuro:latest
+
+ARG env
+ENV env=${env}
+
+RUN echo $env > .env
+
+CMD ["yarn", "start"]
