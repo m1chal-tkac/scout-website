@@ -32,7 +32,6 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       APP_KEYS: ${APP_KEYS}
     volumes:
-      - strapi-config:/app/config
       - strapi-public:/app/public
     networks:
       strapi:
@@ -59,7 +58,6 @@ services:
       - strapi
 
 volumes:
-  strapi-config:
   strapi-public:
   postgres-data:
 
