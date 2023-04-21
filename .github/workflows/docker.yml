@@ -19,7 +19,7 @@ jobs:
       - name: Copy .env file
         run: echo '${{ secrets.ENV }}' > .env
 
-      - name: Build testing containers
+      - name: Build containers
         run: sudo docker compose -f docker/compose.yml --env-file .env build
 
       - name: Start containers
