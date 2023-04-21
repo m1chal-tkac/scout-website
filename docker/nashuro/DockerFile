@@ -8,11 +8,6 @@ RUN yarn --frozen-lockfile && yarn cache clean
 
 ENV NODE_ENV=production
 
-ARG ENV_SECRETS
-ENV ENV_SECRETS=${ENV_SECRETS}
-
-RUN echo $ENV_SECRETS > .env
-
 COPY . .
 
 RUN yarn build
