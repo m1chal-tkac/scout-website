@@ -3,7 +3,7 @@ name: nashuro
 
 services:
   postgres:
-    container_name: strapiDB
+    container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
