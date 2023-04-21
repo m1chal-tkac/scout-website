@@ -1,0 +1,25 @@
+name: Docker
+
+on:
+  push:
+    braches:
+      - master
+
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Clean docker cache
+        run: sudo docker system prune -f
+
+      - name: Copy .env file
+        run: echo ${{ secrets.ENV }} > .env
+
+      - name: Build testing containers
+        run: sudo docker compose -f docker/compose.yml --env-file .env build
+
+      - name: Start containers
+        run: sudo docker compose -f docker/docker-compose.stage.yml stop && sudo docker compose -f docker/docker-compose.stage.yml --env-file .env up --detach
