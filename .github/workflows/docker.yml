@@ -23,4 +23,4 @@ jobs:
         run: sudo docker compose -f docker/compose.yml --env-file .env build
 
       - name: Start containers
-        run: sudo docker compose -f docker/docker-compose.stage.yml stop && sudo docker compose -f docker/docker-compose.stage.yml --env-file .env up --detach
+        run: sudo docker compose -f docker/compose.yml stop && sudo docker compose -f docker/compose.yml --env-file .env up --detach
