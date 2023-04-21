@@ -13,7 +13,8 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data/
     networks:
-      - strapi
+      strapi:
+        ipv4_address: 10.5.0.10
 
   strapi:
     container_name: strapi
@@ -23,7 +24,7 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_CLIENT: postgres
-      DATABASE_HOST: postgres
+      DATABASE_HOST: 10.5.0.10
       DATABASE_PORT: 5432
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -35,7 +36,8 @@ services:
       - strapi-config:/app/config
       - strapi-public:/app/public
     networks:
-      - strapi
+      strapi:
+        ipv4_address: 10.5.0.11
     depends_on:
       - postgres
 
@@ -54,7 +56,8 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - strapi
+      strapi:
+        ipv4_address: 10.5.0.12
     depends_on:
       - strapi
 
@@ -65,5 +68,9 @@ volumes:
 
 networks:
   strapi:
-    name: strapi
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.5.0.0/24
+          gateway: 10.5.0.1
