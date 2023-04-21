@@ -6,8 +6,8 @@ ARG SSL_CERTIFICATE_KEY
 ENV SSL_CERTIFICATE=${SSL_CERTIFICATE}
 ENV SSL_CERTIFICATE_KEY=${SSL_CERTIFICATE_KEY}}
 
-RUN echo $SSL_CERTIFICATE > /etc/nginx/ssl.cert
-RUN echo $SSL_CERTIFICATE_KEY > /etc/nginx/ssl.key
+RUN cat >> /etc/nginx/ssl.cert << $SSL_CERTIFICATE
+RUN cat >> /etc/nginx/ssl.key << $SSL_CERTIFICATE_KEY
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
