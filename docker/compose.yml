@@ -20,7 +20,7 @@ services:
     container_name: strapi
     build:
       context: ../backend
-      dockerfile: "../docker/nashuro/Dockerfile"
+      dockerfile: "../docker/strapi/Dockerfile"
     restart: unless-stopped
     environment:
       DATABASE_CLIENT: postgres

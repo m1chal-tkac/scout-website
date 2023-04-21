@@ -17,7 +17,7 @@ jobs:
         run: sudo docker system prune -f
 
       - name: Copy .env file
-        run: cat >> .env << ${{ secrets.ENV }}
+        run: echo '${{ secrets.ENV }}' > .env
 
       - name: Build containers
         run: sudo docker compose -f docker/compose.yml --env-file .env build
