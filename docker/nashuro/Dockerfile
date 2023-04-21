@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --frozen-lockfile && yarn cache clean
+RUN yarn --frozen-lockfile --network-timeout 600000 && yarn cache clean
 
 ENV NODE_ENV=production
 
