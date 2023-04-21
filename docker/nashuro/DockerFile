@@ -1,8 +1,22 @@
-FROM ghcr.io/michal124/nashuro:latest
+FROM node:16
 
-ARG env
-ENV env=${env}
+WORKDIR /app
 
-RUN echo $env > .env
+COPY package.json yarn.lock ./
+
+RUN yarn --frozen-lockfile && yarn cache clean
+
+ENV NODE_ENV=production
+
+ARG ENV_SECRETS
+ENV ENV_SECRETS=${ENV_SECRETS}
+
+RUN echo $ENV_SECRETS > .env
+
+COPY . .
+
+RUN yarn build
+
+EXPOSE 1337
 
 CMD ["yarn", "start"]
