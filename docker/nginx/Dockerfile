@@ -9,6 +9,6 @@ ENV SSL_CERTIFICATE_KEY=${SSL_CERTIFICATE_KEY}}
 RUN echo $SSL_CERTIFICATE > /etc/nginx/ssl.cert
 RUN echo $SSL_CERTIFICATE_KEY > /etc/nginx/ssl.key
 
-COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80 443
