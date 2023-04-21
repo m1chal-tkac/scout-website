@@ -47,10 +47,8 @@ services:
       context: .
       dockerfile: "./nginx/Dockerfile"
       args:
-        SSL_CERTIFICATE: >
-          "${SSL_CERTIFICATE}"
-        SSL_CERTIFICATE_KEY: >
-          "${SSL_CERTIFICATE_KEY}"
+        SSL_CERTIFICATE: "${SSL_CERTIFICATE}"
+        SSL_CERTIFICATE_KEY: "${SSL_CERTIFICATE_KEY}"
     ports:
       - "80:80"
       - "443:443"
