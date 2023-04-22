@@ -1,27 +1,28 @@
 {
   "collectionName": "components_default_sponzors",
   "info": {
-    "displayName": "Sponzor"
+    "displayName": "Sponzor",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Obrazek": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Nazev": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     },
     "Odkaz": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }

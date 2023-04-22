@@ -1,7 +1,8 @@
 {
   "collectionName": "components_default_socialni_sit",
   "info": {
-    "displayName": "Sociální síť"
+    "displayName": "Sociální síť",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -15,7 +16,7 @@
     "Odkaz": {
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }

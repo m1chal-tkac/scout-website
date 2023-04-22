@@ -4,7 +4,8 @@
   "info": {
     "singularName": "stredisko",
     "pluralName": "strediska",
-    "displayName": "Středisko"
+    "displayName": "Středisko",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
