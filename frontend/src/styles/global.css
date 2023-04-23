@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: themix;
+  font-weight: 400;
+  font-style: "normal";
+  font-display: "swap";
+  src: url("/fonty/TheMix_LT_400.woff");
+}
+
+@font-face {
+  font-family: themix;
+  font-weight: 700;
+  font-style: "normal";
+  font-display: "swap";
+  src: url("/fonty/TheMix_LT_700.woff");
+}
+
+@font-face {
+  font-family: skautbold;
+  font-weight: normal;
+  font-style: "normal";
+  font-display: "swap";
+  src: url("/fonty/skaut-bold-webfont.woff");
+}

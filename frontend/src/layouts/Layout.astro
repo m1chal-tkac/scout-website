@@ -1,35 +1,49 @@
 ---
+import qs from "qs";
+import Navbar from "../components/Navbar";
+import { strediskoFull } from "../helpers/api/stredisko";
+import { oddilyDruziny } from "../helpers/api/oddily";
+
+const stredisko = await strediskoFull();
+
+const oddily = await oddilyDruziny();
+
 export interface Props {
-	title: string;
+  title?: string;
 }
 
-const { title } = Astro.props;
+const title = Astro.props.title
+  ? Astro.props.title + `| ${stredisko.Nazev}`
+  : `Skautské středisko ${stredisko.Nazev}`;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="global.css" />
+    <title>{title}</title>
+  </head>
+  <body class="h-screen flex flex-col">
+    <Navbar
+      client:load
+      Nazev={stredisko.Nazev}
+      SocialniSite={stredisko.SocialniSite}
+      oddily={oddily.map((x) => {
+        return {
+          Nazev: x.Nazev,
+          Url: x.Url,
+          druziny: x.druziny.map((y) => {
+            return { Nazev: y.Nazev, Url: y.Url };
+          }),
+        };
+      })}
+      fotky={stredisko.Fotky}
+    />
+    <div class="w-full flex-1 flex flex-col overflow-y-auto bg-gray-100">
+      <slot />
+    </div>
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
