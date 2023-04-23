@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_default_albums",
+  "info": {
+    "displayName": "Album"
+  },
+  "options": {},
+  "attributes": {
+    "Nazev": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "Odkaz": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
