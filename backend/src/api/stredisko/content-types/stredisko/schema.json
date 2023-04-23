@@ -44,6 +44,12 @@
       "repeatable": true,
       "component": "default.socialni-sit",
       "required": false
+    },
+    "Fotky": {
+      "displayName": "Album",
+      "type": "component",
+      "repeatable": true,
+      "component": "default.album"
     }
   }
 }
