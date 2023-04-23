@@ -550,6 +550,26 @@ video {
   margin-right: auto;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -572,6 +592,18 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .block {
@@ -598,8 +630,16 @@ video {
   height: 100vh;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .max-h-40 {
   max-height: 10rem;
+}
+
+.min-h-full {
+  min-height: 100%;
 }
 
 .w-5 {
@@ -618,12 +658,20 @@ video {
   width: 100vw;
 }
 
+.w-16 {
+  width: 4rem;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
 
 .max-w-7xl {
   max-width: 80rem;
+}
+
+.max-w-\[15rem\] {
+  max-width: 15rem;
 }
 
 .flex-1 {
@@ -636,6 +684,10 @@ video {
 
 .flex-\[3\] {
   flex: 3;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
 }
 
 .flex-col {
@@ -662,8 +714,17 @@ video {
   justify-content: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .bg-gray-100 {
@@ -674,6 +735,11 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-primary-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 92 158 / var(--tw-bg-opacity));
 }
 
 .px-10 {
@@ -690,8 +756,29 @@ video {
   padding-bottom: 1rem;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.pt-16 {
+  padding-top: 4rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .font-skautbold {
   font-family: skautbold, sans-serif;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-4xl {
@@ -709,18 +796,22 @@ video {
   line-height: 1.75rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .font-bold {
   font-weight: 700;
+}
+
+.not-italic {
+  font-style: normal;
 }
 
 .text-primary-300 {
   --tw-text-opacity: 1;
   color: rgb(41 72 133 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 @font-face {
@@ -759,6 +850,15 @@ video {
   src: url("/fonty/skaut-bold-webfont.woff");
 }
 
+.last\:mx-0:last-child {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.last\:mb-0:last-child {
+  margin-bottom: 0px;
+}
+
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -770,6 +870,20 @@ video {
 
   .sm\:w-16 {
     width: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:mb-0 {
+    margin-bottom: 0px;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:text-right {
+    text-align: right;
   }
 }
 
@@ -797,6 +911,10 @@ video {
 
   .lg\:block {
     display: block;
+  }
+
+  .lg\:flex {
+    display: flex;
   }
 
   .lg\:hidden {
