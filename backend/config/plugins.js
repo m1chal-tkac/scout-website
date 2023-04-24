@@ -6,10 +6,11 @@ module.exports = ({ env }) => ({
       jwtSecret: crypto.randomBytes(16).toString("base64"),
     },
   },
-  graphql: {
-    enabled: true,
-    config: {
-      playgroundAlways: true,
-    },
+  config: {
+    endpoint: "/graphql",
+    shadowCRUD: true,
+    playgroundAlways: true,
+    depthLimit: 5,
+    amountLimit: 100,
   },
 });
