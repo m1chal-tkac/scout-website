@@ -1,0 +1,79 @@
+---
+import Copyright from "./Copyright";
+import Address from "./PrimaryMenu/Address";
+import Logo from "./PrimaryMenu/Logo";
+import Units, { PrimaryMenuUnit } from "./PrimaryMenu/Units";
+import SocialMedia, { SocialMediaLink } from "./SecondaryMenu";
+
+const response = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+        stredisko {
+          data {
+            attributes {
+              CelyNazev
+              Sidlo
+              CisloStrediska
+              Ico
+              CisloUctu
+              SocialniSite {
+                Typ
+                Odkaz
+              }
+            }
+          }
+        }
+        oddily {
+          data {
+            attributes {
+              Nazev
+              Url
+            }
+          }
+        }
+      }
+      `,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
+---
+
+<footer class="bg-primary-200 pb-4 pt-16 text-white">
+  <div class="max-w-7xl mx-auto px-10">
+    <div class="flex flex-col md:flex-row">
+      <Address
+        name={data.stredisko.data.attributes.CelyNazev}
+        address={data.stredisko.data.attributes.Sidlo}
+        unitNumber={data.stredisko.data.attributes.CisloStrediska}
+        ICO={data.stredisko.data.attributes.Ico}
+        bankAccountNumber={data.stredisko.data.attributes.CisloUctu}
+      />
+      <Logo />
+      <Units>
+        {
+          data.oddily.data.map((x, i) => (
+            <PrimaryMenuUnit
+              url={x.attributes.Url}
+              name={x.attributes.Nazev}
+              key={i}
+            />
+          ))
+        }
+      </Units>
+    </div>
+    <SocialMedia>
+      {
+        data.stredisko.data.attributes.SocialniSite.map((x, i) => (
+          <SocialMediaLink Typ={x.Typ} Odkaz={x.Odkaz} key={i} />
+        ))
+      }
+    </SocialMedia>
+    <hr class="border-white my-4" />
+    <Copyright name={data.stredisko.data.attributes.CelyNazev} />
+  </div>
+</footer>

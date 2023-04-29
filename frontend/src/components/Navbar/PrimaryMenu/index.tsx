@@ -6,7 +6,9 @@ export default function PrimaryMenu(props) {
   );
 }
 
-import PrimaryMenuLink from "./Link";
+import PrimaryMenuLink, {
+  MenuChildrenWrapper as PrimaryMenuChildrenWrapper,
+} from "./Link";
 import PrimaryMenuMenuLink from "./MenuLink";
 
-export { PrimaryMenuLink, PrimaryMenuMenuLink };
+export { PrimaryMenuLink, PrimaryMenuMenuLink, PrimaryMenuChildrenWrapper };
