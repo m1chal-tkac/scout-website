@@ -1,7 +1,58 @@
 ---
-import Layout from '../layouts/MainLayout.astro';
+import MarkdownDescription from "../components/MarkdownDescription.astro";
+import StrapiPicture from "../components/StrapiPicture.astro";
+import Layout from "../layouts/Layout.astro";
+
+const response = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+	{
+  		uvodniStranka {
+    		data {
+      			attributes {
+        			Obrazek {
+          				data {
+            				attributes {
+              					url
+              					alternativeText
+              					formats
+            				}
+          				}
+        			}
+        			Slogan
+					Popis
+      			}
+    		}
+  		}
+	  }
+      `,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
 ---
 
-<Layout>
-	Hello world
+<Layout noTopPadding>
+  <div
+	slot="outside"
+    class="min-h-full w-full relative mb-24"
+  >
+    <StrapiPicture
+      data={data.uvodniStranka.data.attributes.Obrazek.data}
+      className="max-w-[100vw] w-[96rem] absolute left-1/2 -translate-x-1/2 h-full object-cover md:px-10"
+    />
+    <h1
+      class="font-skautbold lg:text-6xl md:text-5xl text-4xl text-white absolute top-1/2 left-1/2 -translate-x-1/2 text-center w-full"
+    >
+      {data.uvodniStranka.data.attributes.Slogan}
+    </h1>
+    <div class="w-max flex items-center absolute left-1/2 bottom-8 -translate-x-1/2">
+      <img src="/ikony/sipka-dolu.svg" alt="šipka dolů" class="mr-4 h-8 w-8" />
+      <p class="font-bold text-white text-lg">Posuňtě dolů</p>
+    </div>
+  </div>
+  <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
 </Layout>

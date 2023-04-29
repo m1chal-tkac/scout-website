@@ -1,0 +1,35 @@
+---
+export interface Props {
+  data: {
+    attributes: {
+      url: string;
+      alternativeText: string;
+      formats: {
+        [name: string]: {
+          url: string;
+          width: number;
+        };
+      };
+    };
+  };
+  className: string;
+}
+
+const { data, className } = Astro.props;
+---
+
+<picture>
+  {
+    Object.keys(data.attributes.formats).map((x) => (
+      <source
+        media={`(max-width:${data.attributes.formats[x].width}px)`}
+        srcset={import.meta.env.STRAPI + data.attributes.formats[x].url}
+      />
+    ))
+  }
+  <img
+    class={className}
+    src={import.meta.env.STRAPI + data.attributes.url}
+    alt={data.attributes.alternativeText}
+  />
+</picture>

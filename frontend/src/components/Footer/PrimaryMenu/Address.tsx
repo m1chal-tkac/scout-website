@@ -4,6 +4,7 @@ interface Address {
   unitNumber: string;
   ICO: string;
   bankAccountNumber: string;
+  email: string;
 }
 
 export default function Address({
@@ -12,6 +13,7 @@ export default function Address({
   unitNumber,
   ICO,
   bankAccountNumber,
+  email,
 }: Address) {
   return (
     <address className="flex-1 not-italic mb-6 md:mb-0">
@@ -20,6 +22,7 @@ export default function Address({
       <p className="mb-2">číslo střediska: {unitNumber}</p>
       <p className="mb-2">ičo: {ICO}</p>
       <p className="mb-2">číslo účtu: {bankAccountNumber}</p>
+      <p className="mb-2">email: {email}</p>
     </address>
   );
 }
