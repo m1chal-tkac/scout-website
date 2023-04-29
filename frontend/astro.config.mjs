@@ -7,5 +7,10 @@ import prefetch from "@astrojs/prefetch";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nashuro.cz",
-  integrations: [tailwind(), sitemap(), react(), prefetch()],
+  integrations: [
+    tailwind({ config: { applyBaseStyles: false } }),
+    sitemap(),
+    react(),
+    prefetch(),
+  ],
 });
