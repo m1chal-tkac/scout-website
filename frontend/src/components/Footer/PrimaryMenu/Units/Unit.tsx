@@ -1,6 +1,7 @@
 interface Unit {
   name: string;
   url: string;
+  key: any;
 }
 
 export default function Unit({ name, url }: Unit) {

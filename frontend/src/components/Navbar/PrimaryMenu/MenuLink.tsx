@@ -6,6 +6,7 @@ interface MenuLink {
   parent?: boolean;
   child?: boolean;
   children?: ReactNode | ReactNode[];
+  key: any;
 }
 
 export default function MenuLink({

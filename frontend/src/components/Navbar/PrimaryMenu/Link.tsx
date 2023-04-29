@@ -27,10 +27,20 @@ export default function Link({ action, name, children }: Link) {
             action.menu === name ? "" : "hidden"
           }`}
         >
-          <div className="max-w-7xl mx-auto flex flex-wrap px-10 mt-2 lg:pb-8 lg:max-h-96 max-h-40 content-start overflow-y-auto">
-            {children}
-          </div>
+          {children}
         </ul>
       </li>
     );
+}
+
+interface MenuChildrenWrapper {
+  children?: ReactNode | ReactNode[];
+}
+
+export function MenuChildrenWrapper({ children }: MenuChildrenWrapper) {
+  return (
+    <div className="max-w-7xl mx-auto flex flex-wrap px-10 mt-2 lg:pb-8 lg:max-h-96 max-h-40 content-start overflow-y-auto">
+      {children}
+    </div>
+  );
 }

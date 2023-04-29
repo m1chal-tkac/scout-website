@@ -1,0 +1,108 @@
+---
+import Base from "./Base";
+import SecondaryMenu, { SecondaryMenuLink } from "./SecondaryMenu";
+import { PrimaryMenuChildrenWrapper, PrimaryMenuMenuLink } from "./PrimaryMenu";
+
+const response = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+        stredisko {
+            data {
+                attributes {
+                    Nazev
+                    SocialniSite {
+                        Typ
+                        Odkaz
+                    }
+                    Fotky {
+                        Nazev
+                        Odkaz
+                    }
+                }
+            }
+        }
+        oddily {
+            data {
+                attributes {
+                    Nazev
+                    Url
+                    druziny {
+                        data {
+                            attributes {
+                                Nazev
+                                Url
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      }
+      `,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
+---
+
+{/* @ts-ignore */}
+<Base Nazev={data.stredisko.data.attributes.Nazev} client:load>
+  <SecondaryMenu slot="secondaryMenu">
+    {
+      data.stredisko.data.attributes.SocialniSite.map((x, i) => (
+        <SecondaryMenuLink
+          key={i}
+          image={{
+            alt: x.Typ,
+            url:
+              x.Typ === "Instagram"
+                ? "/ikony/instagram.svg"
+                : "/ikony/facebook.svg",
+          }}
+          link={x.Odkaz}
+        />
+      ))
+    }
+    <li class="mr-6 last:mr-0">
+      <a
+        href="https://strapi.nashuro.cz/admin"
+        target="_blank"
+        class="text-primary-100 font-bold"
+      >
+        Správa
+      </a>
+    </li>
+  </SecondaryMenu>
+  <PrimaryMenuChildrenWrapper slot="organizace">
+    {
+      data.oddily.data.map((x, i) => (
+        <PrimaryMenuMenuLink
+          name={x.attributes.Nazev}
+          href={"/" + x.attributes.Url}
+          parent
+          key={i}
+        >
+          {x.attributes.druziny.data.map((y, j) => (
+            <PrimaryMenuMenuLink
+              name={y.attributes.Nazev}
+              href={"/" + x.attributes.Url + "/" + y.attributes.Url}
+              child
+              key={j}
+            />
+          ))}
+        </PrimaryMenuMenuLink>
+      ))
+    }
+  </PrimaryMenuChildrenWrapper>
+  <PrimaryMenuChildrenWrapper slot="fotky">
+    {
+      data.stredisko.data.attributes.Fotky.map((x, i) => (
+        <PrimaryMenuMenuLink name={x.Nazev} href={x.Odkaz} key={i} />
+      ))
+    }
+  </PrimaryMenuChildrenWrapper>
+</Base>
