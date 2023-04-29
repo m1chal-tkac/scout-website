@@ -39,6 +39,10 @@
       "required": true,
       "regex": "^\\d{10}\\/\\d{4}$"
     },
+    "Email": {
+      "type": "string",
+      "required": true
+    },
     "SocialniSite": {
       "type": "component",
       "repeatable": true,
