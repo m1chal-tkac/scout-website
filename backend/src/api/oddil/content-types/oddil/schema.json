@@ -16,9 +16,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "Nazev": {
       "type": "string",
@@ -30,13 +28,7 @@
       "unique": true
     },
     "Typ": {
-      "type": "enumeration",
-      "enum": [
-        "dívčí oddíl",
-        "chlapecký oddíl",
-        "koedukovaný oddíl",
-        "roverský kmen"
-      ],
+      "type": "string",
       "required": true
     },
     "Popis": {
