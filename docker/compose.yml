@@ -33,6 +33,12 @@ services:
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       APP_KEYS: ${APP_KEYS}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      EMAIL: ${EMAIL}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMPT_PASSWORD: ${SMTP_PASSWORD}
     volumes:
       - strapi-public:/app/public
     networks:

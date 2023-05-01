@@ -14,6 +14,7 @@
     "@strapi/plugin-graphql": "4.10.1",
     "@strapi/plugin-i18n": "4.10.1",
     "@strapi/plugin-users-permissions": "4.10.1",
+    "@strapi/provider-email-nodemailer": "^4.10.1",
     "@strapi/strapi": "4.10.1",
     "better-sqlite3": "8.3.0",
     "crypto": "^1.0.1",

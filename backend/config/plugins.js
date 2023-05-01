@@ -3,7 +3,25 @@ const crypto = require("crypto");
 module.exports = ({ env }) => ({
   "users-permissions": {
     config: {
-      jwtSecret: crypto.randomBytes(16).toString("base64"),
+      jwtSecret: env("JWT_SECRET"),
+    },
+  },
+  email: {
+    config: {
+      provider: "nodemailer",
+      providerOptions: {
+        host: env("SMTP_HOST"),
+        port: env("SMTP_PORT"),
+        secure: true,
+        auth: {
+          user: env("SMTP_USERNAME"),
+          pass: env("SMTP_PASSWORD"),
+        },
+      },
+      settings: {
+        defaultFrom: env("EMAIL"),
+        defaultReplyTo: env("EMAIL"),
+      },
     },
   },
 });
