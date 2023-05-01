@@ -1,6 +1,7 @@
 ---
 import { marked } from "marked";
 import Section from "./Section.astro";
+import { h1 } from "./typography";
 
 export interface Props {
   markdown: string;
@@ -10,25 +11,22 @@ const { markdown } = Astro.props;
 
 const renderer = {
   heading(text, level) {
-
-    return `<h${level} class="font-skautbold text-3xl mb-4">
+    return `<h${level} class="${h1}">
               ${text}
             </h${level}>`;
   },
   paragraph(text) {
     return `<p class="max-w-lg mb-4 leading-8 text-center">
               ${text}
-            </p>`
-  }
+            </p>`;
+  },
 };
 
 marked.use({ renderer });
 
 const content = marked.parse(markdown);
-
-console.log(content);
 ---
 
 <Section>
-  <div class="w-full flex flex-col items-center" set:html={content}/>
+  <div class="w-full flex flex-col items-center" set:html={content} />
 </Section>

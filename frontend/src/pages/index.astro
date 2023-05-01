@@ -1,6 +1,11 @@
 ---
+import FlexWrapper from "../components/Cards/FlexWrapper.astro";
+import Unit from "../components/Cards/Unit/Unit.astro";
+import UnitInfo from "../components/Cards/Unit/UnitInfo.astro";
 import MarkdownDescription from "../components/MarkdownDescription.astro";
+import Section from "../components/Section.astro";
 import StrapiPicture from "../components/StrapiPicture.astro";
+import { h1_cards_section } from "../components/typography";
 import Layout from "../layouts/Layout.astro";
 
 const response = await fetch("https://strapi.nashuro.cz/graphql", {
@@ -22,11 +27,36 @@ const response = await fetch("https://strapi.nashuro.cz/graphql", {
           				}
         			}
         			Slogan
-					Popis
+					    Popis
+              oddily {
+                data {
+                  attributes {
+                    Obrazek {
+                      data {
+                        attributes {
+                          url
+                          alternativeText
+                          formats
+                        }
+                      }
+                    }
+                    Nazev
+                    Url
+                    Typ
+                    druziny {
+                      data {
+                        attributes {
+                          Nazev
+                        }
+                      }
+                    }
+                  }
+                }
+              }
       			}
-    		}
-  		}
-	  }
+    		  }
+  		  }
+	    }
       `,
   }),
 });
@@ -36,12 +66,9 @@ const data = Json.data;
 ---
 
 <Layout noTopPadding>
-  <div
-	slot="outside"
-    class="min-h-full w-full relative mb-24"
-  >
+  <div slot="outside" class="min-h-full w-full relative mb-24">
     <StrapiPicture
-      data={data.uvodniStranka.data.attributes.Obrazek.data}
+      image={data.uvodniStranka.data.attributes.Obrazek}
       className="max-w-[100vw] w-[96rem] absolute left-1/2 -translate-x-1/2 h-full object-cover md:px-10"
     />
     <h1
@@ -49,10 +76,31 @@ const data = Json.data;
     >
       {data.uvodniStranka.data.attributes.Slogan}
     </h1>
-    <div class="w-max flex items-center absolute left-1/2 bottom-8 -translate-x-1/2">
+    <div
+      class="w-max flex items-center absolute left-1/2 bottom-8 -translate-x-1/2"
+    >
       <img src="/ikony/sipka-dolu.svg" alt="šipka dolů" class="mr-4 h-8 w-8" />
       <p class="font-bold text-white text-lg">Posuňtě dolů</p>
     </div>
   </div>
   <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
+  <Section>
+    <h1 class={h1_cards_section}>Naše oddíly</h1>
+    <FlexWrapper>
+      {
+        data.uvodniStranka.data.attributes.oddily.data.map((x) => (
+          <Unit
+            Nazev={x.attributes.Nazev}
+            Typ={x.attributes.Typ}
+            Url={x.attributes.Url}
+            Obrazek={x.attributes.Obrazek}
+          >
+            {x.attributes.druziny.data.map((y) => (
+              <UnitInfo text={y.attributes.Nazev} />
+            ))}
+          </Unit>
+        ))
+      }
+    </FlexWrapper>
+  </Section>
 </Layout>
