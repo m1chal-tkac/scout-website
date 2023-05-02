@@ -1,0 +1,31 @@
+---
+import { StrapiImage } from "../../../customTypes";
+import { h3 } from "../../typography";
+
+export interface Props {
+  Jmeno: string;
+  Funkce: string;
+  Telefon: string;
+  Email: string;
+  Obrazek: StrapiImage;
+}
+
+const { Jmeno, Funkce, Telefon, Email, Obrazek } = Astro.props;
+---
+
+<article class="flex flex-col items-center text-center w-full mb-8 max-w-xs">
+  <img
+    loading="lazy"
+    src={import.meta.env.STRAPI +
+      (Obrazek.data.attributes.formats.thumbnail?.url ||
+        Obrazek.data.attributes.url)}
+    alt={Jmeno}
+    class="h-28 w-28 rounded-full"
+  />
+  <h1 class={h3}>{Jmeno}</h1>
+  <h2 class="mb-2">{Funkce}</h2>
+  <address class="not-italic">
+    <p class="mb-1">{Telefon}</p>
+    <p>{Email}</p>
+  </address>
+</article>

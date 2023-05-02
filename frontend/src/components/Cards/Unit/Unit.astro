@@ -9,24 +9,23 @@ export interface Props {
   Obrazek: StrapiImage;
 }
 
-const {Nazev, Typ, Url, Obrazek} = Astro.props;
+const { Nazev, Typ, Url, Obrazek } = Astro.props;
 ---
 
-<a
-  href={Url}
-  class="w-full mb-8 max-w-[15rem]"
->
+<a href={Url} class="w-full mb-8 max-w-[15rem]">
   <article class="flex flex-col items-center text-center">
     <img
       loading="lazy"
-      src={import.meta.env.STRAPI + Obrazek.data.attributes.formats.thumbnail.url}
+      src={import.meta.env.STRAPI +
+        (Obrazek.data.attributes.formats.thumbnail?.url ||
+          Obrazek.data.attributes.url)}
       alt={Obrazek.data.attributes.alternativeText}
       class="h-28 w-28 rounded-full"
     />
     <h1 class={h2}>{Nazev}</h1>
     <h2 class="mb-2">{Typ}</h2>
-        <ul>
-          <slot />
-        </ul>
+    <ul>
+      <slot />
+    </ul>
   </article>
 </a>

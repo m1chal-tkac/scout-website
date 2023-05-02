@@ -50,7 +50,7 @@ const noTopPadding = Astro.props.noTopPadding;
       <slot name="outside" />
       <main
         class={`min-h-full shrink-0 ${
-          noTopPadding ? "mb-24" : "py-24"
+          noTopPadding ? "" : "pt-24"
         } max-w-7xl w-full mx-auto px-10`}
       >
         <slot />

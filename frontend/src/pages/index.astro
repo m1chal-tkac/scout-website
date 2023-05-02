@@ -1,19 +1,21 @@
 ---
-import FlexWrapper from "../components/Cards/FlexWrapper.astro";
+import Contact from "../components/Cards/Contact/Contact.astro";
+import FlexWrapper from "../components/Cards/FlexWrapper";
 import Unit from "../components/Cards/Unit/Unit.astro";
 import UnitInfo from "../components/Cards/Unit/UnitInfo.astro";
 import MarkdownDescription from "../components/MarkdownDescription.astro";
-import Section from "../components/Section.astro";
+import Section from "../components/Section";
 import StrapiPicture from "../components/StrapiPicture.astro";
 import { h1_cards_section } from "../components/typography";
 import Layout from "../layouts/Layout.astro";
+import NewsWithSwitchMenu from "../sections/NewsWithSwitchMenu";
 
 const response = await fetch("https://strapi.nashuro.cz/graphql", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     query: `
-	{
+	  {
   		uvodniStranka {
     		data {
       			attributes {
@@ -30,6 +32,7 @@ const response = await fetch("https://strapi.nashuro.cz/graphql", {
 					    Popis
               oddily {
                 data {
+                  id
                   attributes {
                     Obrazek {
                       data {
@@ -53,6 +56,38 @@ const response = await fetch("https://strapi.nashuro.cz/graphql", {
                   }
                 }
               }
+              Kontakty {
+                Funkce
+                vedouci {
+                  data {
+                    attributes {
+                      Jmeno
+                      Telefon
+                      Email
+                      Fotka {
+                        data {
+                          attributes {
+                            url
+                            formats
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              Sponzori {
+                Nazev
+                Odkaz
+                Obrazek {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+              }
       			}
     		  }
   		  }
@@ -63,6 +98,64 @@ const response = await fetch("https://strapi.nashuro.cz/graphql", {
 
 const Json = await response.json();
 const data = Json.data;
+
+const novinkyResponse = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+        novinky(filters: { oddil: { id: { eq: null } } }) {
+          data {
+            attributes {
+              Nazev
+              Url
+              Popis
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }
+        ${data.uvodniStranka.data.attributes.oddily.data.map((x) => `
+        _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }) {
+          data {
+            attributes {
+              Nazev
+              Url
+              Popis
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }  
+        `)}
+      }
+      `,
+  }),
+});
+
+const novinkyJson = await novinkyResponse.json();
+const novinkyData = novinkyJson.data;
+
+const novinky = {"Středisko": novinkyData["novinky"]};
+
+Object.keys(novinkyData).map(x => {
+  if(x === "novinky") return;
+  const oddil = data.uvodniStranka.data.attributes.oddily.data.find(y => y.id === x.split("_")[1]).attributes.Nazev;
+  novinky[oddil] = novinkyData[x];
+})
 ---
 
 <Layout noTopPadding>
@@ -99,6 +192,40 @@ const data = Json.data;
               <UnitInfo text={y.attributes.Nazev} />
             ))}
           </Unit>
+        ))
+      }
+    </FlexWrapper>
+  </Section>
+  <NewsWithSwitchMenu client:idle data={novinky} />
+  <Section button="Všechny Kontakty" url="/kontakty">
+    <h1 class={h1_cards_section}>Kontakty</h1>
+    <FlexWrapper>
+      {
+        data.uvodniStranka.data.attributes.Kontakty.map((x) => (
+          <Contact
+            Jmeno={x.vedouci.data.attributes.Jmeno}
+            Funkce={x.Funkce}
+            Telefon={x.vedouci.data.attributes.Telefon}
+            Email={x.vedouci.data.attributes.Email}
+            Obrazek={x.vedouci.data.attributes.Fotka}
+          />
+        ))
+      }
+    </FlexWrapper>
+  </Section>
+  <Section>
+    <h1 class={h1_cards_section}>Naši sponzoři</h1>
+    <FlexWrapper>
+      {
+        data.uvodniStranka.data.attributes.Sponzori.map((x) => (
+          <a href={x.Odkaz} target="_blank" class="sm:mr-8 sm:mb-0 mb-8 last:m-0">
+            <img
+              loading="lazy"
+              src={import.meta.env.STRAPI + x.Obrazek.data.attributes.url}
+              alt={x.Nazev}
+              class="w-60 h-24 object-contain"
+            />
+          </a>
         ))
       }
     </FlexWrapper>
