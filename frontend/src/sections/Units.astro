@@ -1,0 +1,50 @@
+---
+import FlexWrapper from "../components/Cards/FlexWrapper";
+import Unit from "../components/Cards/Unit/Unit.astro";
+import UnitInfo from "../components/Cards/Unit/UnitInfo.astro";
+import Section from "../components/Section";
+import { h1_cards_section } from "../components/typography";
+import { StrapiImage } from "../customTypes";
+
+export interface Props{
+    data: {
+        data: {
+            attributes: {
+                Nazev: string;
+                Typ: string;
+                Url: string;
+                Obrazek: StrapiImage;
+                druziny: {
+                    data: {
+                        attributes: {
+                            Nazev: string;
+                        }
+                    }[]
+                }
+            }
+        }[]
+    }
+}
+
+const data = Astro.props.data;
+---
+
+<Section>
+    <h1 class={h1_cards_section}>Naše oddíly</h1>
+    <FlexWrapper>
+      {
+        data.data.map((x) => (
+          <Unit
+            Nazev={x.attributes.Nazev}
+            Typ={x.attributes.Typ}
+            Url={x.attributes.Url}
+            Obrazek={x.attributes.Obrazek}
+          >
+            {x.attributes.druziny.data.map((y) => (
+              <UnitInfo text={y.attributes.Nazev} />
+            ))}
+          </Unit>
+        ))
+      }
+    </FlexWrapper>
+  </Section>

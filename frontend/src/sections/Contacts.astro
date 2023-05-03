@@ -1,0 +1,42 @@
+---
+import Contact from "../components/Cards/Contact/Contact.astro";
+import FlexWrapper from "../components/Cards/FlexWrapper";
+import Section from "../components/Section";
+import { h1_cards_section } from "../components/typography";
+import { StrapiImage } from "../customTypes";
+
+export interface Props {
+  data: {
+    Funkce: string;
+    vedouci: {
+      data: {
+        attributes: {
+          Jmeno: string;
+          Telefon: string;
+          Email: string;
+          Fotka: StrapiImage;
+        };
+      };
+    };
+  }[];
+}
+
+const data = Astro.props.data;
+---
+
+<Section button="Všechny Kontakty" url="/kontakty">
+  <h1 class={h1_cards_section}>Kontakty</h1>
+  <FlexWrapper>
+    {
+      data.map((x) => (
+        <Contact
+          Jmeno={x.vedouci.data.attributes.Jmeno}
+          Funkce={x.Funkce}
+          Telefon={x.vedouci.data.attributes.Telefon}
+          Email={x.vedouci.data.attributes.Email}
+          Obrazek={x.vedouci.data.attributes.Fotka}
+        />
+      ))
+    }
+  </FlexWrapper>
+</Section>

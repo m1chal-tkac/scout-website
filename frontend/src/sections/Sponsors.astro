@@ -1,0 +1,33 @@
+---
+import FlexWrapper from "../components/Cards/FlexWrapper";
+import Section from "../components/Section";
+import { h1_cards_section } from "../components/typography";
+import { StrapiImage } from "../customTypes";
+
+export interface Props {
+    data: {
+  Nazev: string;
+  Odkaz: string;
+  Obrazek: StrapiImage;}[]
+};
+
+const data = Astro.props.data;
+---
+
+<Section>
+  <h1 class={h1_cards_section}>Naši sponzoři</h1>
+  <FlexWrapper>
+    {
+      data.map((x) => (
+        <a href={x.Odkaz} target="_blank" class="mx-4 mb-8 lg:mb-0 last:mb-0">
+          <img
+            loading="lazy"
+            src={import.meta.env.PUBLIC_STRAPI + x.Obrazek.data.attributes.url}
+            alt={x.Nazev}
+            class="w-60 h-24 object-contain"
+          />
+        </a>
+      ))
+    }
+  </FlexWrapper>
+</Section>
