@@ -16,7 +16,7 @@ const { Nazev, Typ, Url, Obrazek } = Astro.props;
   <article class="flex flex-col items-center text-center">
     <img
       loading="lazy"
-      src={import.meta.env.STRAPI +
+      src={import.meta.env.PUBLIC_STRAPI +
         (Obrazek.data.attributes.formats.thumbnail?.url ||
           Obrazek.data.attributes.url)}
       alt={Obrazek.data.attributes.alternativeText}

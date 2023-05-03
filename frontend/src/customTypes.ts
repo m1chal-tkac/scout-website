@@ -12,3 +12,18 @@ export type StrapiImage = {
     };
   };
 };
+
+export type StrapiImages = {
+  data: {
+    attributes: {
+      url: string;
+      alternativeText: string;
+      formats: {
+        [name: string]: {
+          url: string;
+          width: number;
+        };
+      };
+    };
+  }[];
+};

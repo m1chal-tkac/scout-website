@@ -29,18 +29,16 @@ export default function NewsWithSwitchMenu({ data }: NewsWithSwitchMenu) {
     <Section button="Všechny Novinky" url="/novinky">
       <h1 className={h1_cards_section}>Novinky</h1>
       <SwitchMenuButtonWrapper>
-        {Object.keys(data).map((x, i) => (
-          <>
-            {data[x].data.length > 0 && (
-              <SwitchMenuButton
-                key={i}
-                text={x}
-                onClick={() => setSelected(x)}
-                selected={x === selected}
-              />
-            )}
-          </>
-        ))}
+        {Object.keys(data).map((x, i) =>
+          data[x].data.length > 0 ? (
+            <SwitchMenuButton
+              key={i}
+              text={x}
+              onClick={() => setSelected(x)}
+              selected={x === selected}
+            />
+          ) : null
+        )}
       </SwitchMenuButtonWrapper>
       {Object.keys(data).map((x, i) => (
         <div key={i} className={`${x === selected ? "" : "hidden"}`}>

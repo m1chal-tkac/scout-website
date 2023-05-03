@@ -19,7 +19,7 @@ export default function ArticlePreview({
         <img
           loading="lazy"
           src={
-            import.meta.env.STRAPI +
+            import.meta.env.PUBLIC_STRAPI +
             (Obrazek.data.attributes.formats.small?.url ||
               Obrazek.data.attributes.url)
           }

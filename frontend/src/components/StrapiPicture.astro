@@ -14,13 +14,13 @@ const { image, className } = Astro.props;
     Object.keys(image.data.attributes.formats).map((x) => (
       <source
         media={`(max-width:${image.data.attributes.formats[x].width}px)`}
-        srcset={import.meta.env.STRAPI + image.data.attributes.formats[x].url}
+        srcset={import.meta.env.PUBLIC_STRAPI + image.data.attributes.formats[x].url}
       />
     ))
   }
   <img
     class={className}
-    src={import.meta.env.STRAPI + image.data.attributes.url}
+    src={import.meta.env.PUBLIC_STRAPI + image.data.attributes.url}
     alt={image.data.attributes.alternativeText}
   />
 </picture>
