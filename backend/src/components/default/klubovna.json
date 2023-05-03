@@ -10,9 +10,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "Nazev": {
       "type": "string",
@@ -25,8 +23,9 @@
       "unique": false
     },
     "Kod": {
-      "type": "text",
-      "required": true
+      "type": "string",
+      "required": true,
+      "unique": false
     },
     "spravce": {
       "type": "relation",
