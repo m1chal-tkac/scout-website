@@ -3,7 +3,7 @@ import Section from "../components/Section";
 import SwitchMenuButton, {
   SwitchMenuButtonWrapper,
 } from "../components/SwitchMenu/Button";
-import { h1_cards_section } from "../components/typography";
+import { h1_cards_section, h1_center } from "../components/typography";
 import { StrapiImages } from "../customTypes";
 
 interface ClubHouse {
@@ -45,7 +45,7 @@ export default function ClubHouse({ data }: ClubHouse) {
 
   return (
     <Section>
-      <h1 className={h1_cards_section}>Naše klubovna</h1>
+      <h1 className={data.length > 1? h1_center: h1_cards_section}>Naše klubovna</h1>
       {data.length > 1 && (
         <SwitchMenuButtonWrapper>
           {data.map((x, i) => (

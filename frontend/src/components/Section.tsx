@@ -4,11 +4,21 @@ interface Props {
   button?: string;
   url?: string;
   children: ReactNode | ReactNode[];
+  noInnerPadding?: boolean;
 }
 
-export default function Section({ button, url, children }: Props) {
+export default function Section({
+  button,
+  url,
+  children,
+  noInnerPadding,
+}: Props) {
   return (
-    <section className="max-w-7xl w-full mx-auto px-10 mb-24">
+    <section
+      className={`max-w-7xl w-full mx-auto ${
+        noInnerPadding ? "" : "px-10"
+      } mb-24`}
+    >
       {children}
       {button && (
         <a

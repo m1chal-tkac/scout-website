@@ -1,16 +1,10 @@
 ---
-import Contact from "../components/Cards/Contact/Contact.astro";
-import FlexWrapper from "../components/Cards/FlexWrapper";
-import Unit from "../components/Cards/Unit/Unit.astro";
-import UnitInfo from "../components/Cards/Unit/UnitInfo.astro";
 import MarkdownDescription from "../components/MarkdownDescription.astro";
-import Section from "../components/Section";
 import StrapiPicture from "../components/StrapiPicture.astro";
-import { h1_cards_section } from "../components/typography";
 import Layout from "../layouts/Layout.astro";
 import ClubHouse from "../sections/ClubHouses";
 import Contacts from "../sections/Contacts.astro";
-import NewsWithSwitchMenu from "../sections/NewsWithSwitchMenu";
+import News from "../sections/News";
 import Sponsors from "../sections/Sponsors.astro";
 import Units from "../sections/Units.astro";
 
@@ -131,7 +125,7 @@ const novinkyResponse = await fetch("https://strapi.nashuro.cz/graphql", {
   body: JSON.stringify({
     query: `
       {
-        novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: 3 }) {
+        novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
             attributes {
               Nazev
@@ -149,7 +143,7 @@ const novinkyResponse = await fetch("https://strapi.nashuro.cz/graphql", {
           }
         }
         ${data.uvodniStranka.data.attributes.oddily.data.map((x) => `
-        _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }) {
+        _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
             attributes {
               Nazev
@@ -204,7 +198,7 @@ Object.keys(novinkyData).map(x => {
   </div>
   <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
   <Units data={data.uvodniStranka.data.attributes.oddily} />
-  <NewsWithSwitchMenu client:idle data={novinky} />
+  <News client:idle data={novinky} />
   <Contacts data={data.uvodniStranka.data.attributes.Kontakty} />
   <ClubHouse client:idle data={data.uvodniStranka.data.attributes.Klubovny} />
   <Sponsors data={data.uvodniStranka.data.attributes.Sponzori} />

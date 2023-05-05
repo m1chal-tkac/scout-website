@@ -29,7 +29,7 @@ export interface Props {
 }
 
 const title = Astro.props.title
-  ? Astro.props.title + `| ${data.stredisko.data.attributes.Nazev}`
+  ? Astro.props.title + ` | ${data.stredisko.data.attributes.Nazev}`
   : `Skautské středisko ${data.stredisko.data.attributes.Nazev}`;
 
 const noTopPadding = Astro.props.noTopPadding;

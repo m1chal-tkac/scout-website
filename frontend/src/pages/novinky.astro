@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import News from "../sections/News";
+
+const response = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+    {
+        oddily {
+            data {
+                id
+                attributes {
+                    Nazev
+                }
+            }
+        }
+    }
+    `,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
+
+const novinkyResponse = await fetch("https://strapi.nashuro.cz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+        novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: -1 }, sort: "publishedAt:desc") {
+          data {
+            attributes {
+              Nazev
+              Url
+              Popis
+              publishedAt
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }
+        ${data.oddily.data.map((x) => `
+        _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: -1 }, sort: "publishedAt:desc") {
+          data {
+            attributes {
+              Nazev
+              Url
+              Popis
+              publishedAt
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+          }
+        }  
+        `)}
+      }
+      `,
+  }),
+});
+
+const novinkyJson = await novinkyResponse.json();
+const novinkyData = novinkyJson.data;
+
+const novinky = {"Středisko": novinkyData["novinky"]};
+
+Object.keys(novinkyData).map(x => {
+  if(x === "novinky") return;
+  const oddil = data.oddily.data.find(y => y.id === x.split("_")[1]).attributes.Nazev;
+  novinky[oddil] = novinkyData[x];
+})
+---
+
+<Layout title="Novinky">
+    <News Big client:idle data={novinky} />
+</Layout>
