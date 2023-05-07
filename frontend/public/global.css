@@ -796,6 +796,10 @@ video {
   flex: 3;
 }
 
+.flex-shrink {
+  flex-shrink: 1;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1027,6 +1031,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 
 .font-bold {
