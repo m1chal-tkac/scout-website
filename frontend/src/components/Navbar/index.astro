@@ -3,7 +3,7 @@ import Base from "./Base";
 import SecondaryMenu, { SecondaryMenuLink } from "./SecondaryMenu";
 import { PrimaryMenuChildrenWrapper, PrimaryMenuMenuLink } from "./PrimaryMenu";
 
-const response = await fetch("https://strapi.nashuro.cz/graphql", {
+const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -69,7 +69,7 @@ const data = Json.data;
     }
     <li class="mr-6 last:mr-0">
       <a
-        href="https://strapi.nashuro.cz/admin"
+        href={import.meta.env.PUBLIC_STRAPI + "/admin"}
         target="_blank"
         class="text-primary-100 font-bold"
       >

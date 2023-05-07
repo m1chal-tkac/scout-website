@@ -1,6 +1,6 @@
 ---
 import { StrapiImage } from "../../../customTypes";
-import { h3 } from "../../typography";
+import { h5 } from "../../typography";
 
 export interface Props {
   Jmeno: string;
@@ -22,7 +22,7 @@ const { Jmeno, Funkce, Telefon, Email, Obrazek } = Astro.props;
     alt={Jmeno}
     class="h-28 w-28 rounded-full"
   />
-  <h1 class={h3}>{Jmeno}</h1>
+  <h1 class={h5}>{Jmeno}</h1>
   <h2 class="mb-2">{Funkce}</h2>
   <address class="not-italic">
     <p class="mb-1">{Telefon}</p>

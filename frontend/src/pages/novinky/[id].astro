@@ -1,0 +1,151 @@
+---
+import { marked } from "marked";
+import { h1_center, h2, h3, h4, h5 } from "../../components/typography";
+import { StrapiImage } from "../../customTypes";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+      {
+        novinky(pagination: { limit: -1 }) {
+            data {
+                attributes {
+                    Nazev
+                    Url
+                    Text
+                    publishedAt
+                    Obrazek {
+                        data {
+                            attributes {
+                                url
+                                formats
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    `,
+    }),
+  });
+
+  const Json = await response.json();
+  const data = Json.data;
+
+  return data.novinky.data.map((x) => {
+    return {
+      params: { id: x.attributes.Url },
+      props: {
+        Nazev: x.attributes.Nazev,
+        Text: x.attributes.Text,
+        publishedAt: x.attributes.publishedAt,
+        Obrazek: x.attributes.Obrazek,
+      },
+    };
+  });
+}
+
+export interface Props {
+  Nazev: string;
+  Text: string;
+  publishedAt: string;
+  Obrazek: StrapiImage;
+}
+
+const { Nazev, Text, publishedAt, Obrazek } = Astro.props;
+
+const renderer = {
+  heading(text, level) {
+    return `<h${level} class="${
+      level === 1 ? h2 : level === 2 ? h3 : level === 3 ? h4 : h5
+    }">
+              ${text}
+            </h${level}>`;
+  },
+  paragraph(text) {
+    return `<p class="mb-4 leading-8">
+              ${text}
+            </p>`;
+  },
+  list(body, ordered, start) {
+    return ordered
+      ? `<ol start=${start} class="-mt-4 mb-4 list-decimal pl-6">
+          ${body}
+        </ol>`
+      : `<ul class="-mt-4 mb-4 list-disc pl-6">
+          ${body}
+        </ul>`;
+  },
+  listitem(text) {
+    return `<li>
+              <span class="relative left-2">
+                ${text}
+              </span>
+            </li>`;
+  },
+  blockquote(quote) {
+    return `<div class="bg-gray-200 rounded-md px-3 py-4 mb-4 border-l-4 border-gray-300">
+              ${/<p[^>]*>(.*)<\/p>/i.exec(quote.replaceAll("\n", ""))[1].trim()}
+            </div>`;
+  },
+  link(href, title, text) {
+    return `<a href="${href}" target="_blank" class="text-primary-100 underline">
+              ${text}
+            </a>`;
+  },
+  image(href, title, text) {
+    return `<img
+              alt="${text}"
+              src="${import.meta.env.PUBLIC_STRAPI + href}"
+              class="my-6"
+            />`;
+  },
+};
+
+marked.use({ renderer });
+
+const content = marked.parse(Text);
+
+const date = new Date(publishedAt);
+---
+
+<Layout title={Nazev} noSidePadding>
+  <script
+    type="application/ld+json"
+    slot="head"
+    is:inline
+    set:html={`{
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": "${Nazev}",
+      "image": "${
+        import.meta.env.PUBLIC_STRAPI +
+        (Obrazek.data.attributes.formats.small?.url ||
+          Obrazek.data.attributes.url)
+      }",
+      "datePublished": "${publishedAt}"
+    }`}
+  ></script>
+  <article class="max-w-2xl w-full mx-auto flex items-center flex-col pb-12">
+    <h1 class={h1_center + " px-10"}>
+      {Nazev}
+    </h1>
+    <p class="mb-3 mx-auto">
+      {date.getDay()}.{date.getMonth() + 1}. {date.getFullYear()}
+    </p>
+    <img
+      loading="lazy"
+      src={import.meta.env.PUBLIC_STRAPI +
+        (Obrazek.data.attributes.formats.large?.url ||
+          Obrazek.data.attributes.url)}
+      alt={Nazev}
+      class="object-cover max-w-2xl w-full aspect-[3/2] mb-8"
+    />
+    <div class="w-full max-w-2xl mx-auto px-10" set:html={content} />
+  </article>
+</Layout>
