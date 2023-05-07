@@ -1,0 +1,92 @@
+---
+import MarkdownDescription from "../../components/MarkdownDescription.astro";
+import { StrapiImage } from "../../customTypes";
+import Layout from "../../layouts/Layout.astro";
+import Contacts from "../../sections/Contacts.astro";
+import News from "../../sections/News";
+import Units from "../../sections/Units.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+      {
+        druziny {
+            data {
+                attributes {
+                    Nazev
+                    Url
+                    Popis
+                    Kontakty {
+                        Funkce
+                        vedouci {
+                            data {
+                                attributes {
+                                    Fotka {
+                                        data {
+                                            attributes {
+                                                url
+                                                formats
+                                            }
+                                        }
+                                    }
+                                    Jmeno
+                                    Telefon
+                                    Email
+                                }
+                            }
+                        }
+                    }
+                    oddil {
+                        data {
+                            attributes {
+                                Url
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    `,
+    }),
+  });
+
+  const Json = await response.json();
+  const data = Json.data;
+
+  return data.druziny.data.map((x) => {
+    return {
+      params: {
+        oddil: x.attributes.oddil.data.attributes.Url,
+        druzina: x.attributes.Url,
+      },
+      props: {
+        Nazev: x.attributes.Nazev,
+        Popis: x.attributes.Popis,
+        Kontakty: x.attributes.Kontakty,
+      },
+    };
+  });
+}
+
+export interface Props {
+  Nazev: string;
+  Popis: string;
+  Kontakty: any;
+}
+
+const {
+  Nazev,
+  Popis,
+  Kontakty,
+} = Astro.props;
+const oddil = Astro.params.oddil;
+---
+
+<Layout title={`Skautská družina ${Nazev}`}>
+  <MarkdownDescription markdown={Popis} />
+  <Contacts data={Kontakty} />
+</Layout>
