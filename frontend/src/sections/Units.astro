@@ -6,45 +6,48 @@ import Section from "../components/Section";
 import { h1_cards_section } from "../components/typography";
 import { StrapiImage } from "../customTypes";
 
-export interface Props{
+export interface Props {
+  oddilUrl?: string;
+  data: {
     data: {
-        data: {
+      attributes: {
+        Nazev: string;
+        Typ: string;
+        Url: string;
+        Obrazek: StrapiImage;
+        druziny?: {
+          data: {
             attributes: {
-                Nazev: string;
-                Typ: string;
-                Url: string;
-                Obrazek: StrapiImage;
-                druziny: {
-                    data: {
-                        attributes: {
-                            Nazev: string;
-                        }
-                    }[]
-                }
-            }
-        }[]
-    }
+              Nazev: string;
+            };
+          }[];
+        };
+      };
+    }[];
+  };
 }
 
 const data = Astro.props.data;
+const oddil = Astro.props.oddilUrl;
 ---
 
 <Section>
-    <h1 class={h1_cards_section}>Naše oddíly</h1>
-    <FlexWrapper>
-      {
-        data.data.map((x) => (
-          <Unit
-            Nazev={x.attributes.Nazev}
-            Typ={x.attributes.Typ}
-            Url={x.attributes.Url}
-            Obrazek={x.attributes.Obrazek}
-          >
-            {x.attributes.druziny.data.map((y) => (
+  <h1 class={h1_cards_section}>Naše {oddil ? "Družiny" : "Oddíly"}</h1>
+  <FlexWrapper>
+    {
+      data.data.map((x) => (
+        <Unit
+          Nazev={x.attributes.Nazev}
+          Typ={x.attributes.Typ}
+          Url={(oddil ? oddil + "/" : "") + x.attributes.Url}
+          Obrazek={x.attributes.Obrazek}
+        >
+          {x.attributes.druziny &&
+            x.attributes.druziny.data.map((y) => (
               <UnitInfo text={y.attributes.Nazev} />
             ))}
-          </Unit>
-        ))
-      }
-    </FlexWrapper>
-  </Section>
+        </Unit>
+      ))
+    }
+  </FlexWrapper>
+</Section>

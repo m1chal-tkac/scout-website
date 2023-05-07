@@ -21,7 +21,7 @@ export default function MenuLink({
       <a
         href={href}
         className={`${parent ? "font-bold text-2xl" : ""}`}
-        target="_blank"
+        target={href.startsWith("http") ? "_blank" : "_self"}
       >
         {name}
       </a>

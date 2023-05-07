@@ -29,6 +29,13 @@ export async function getStaticPaths() {
                 }
             }
         }
+        stredisko {
+          data {
+            attributes {
+              Nazev
+            }
+          }
+        }
     }
     `,
     }),
@@ -39,12 +46,13 @@ export async function getStaticPaths() {
 
   return data.novinky.data.map((x) => {
     return {
-      params: { id: x.attributes.Url },
+      params: { novinka: x.attributes.Url },
       props: {
         Nazev: x.attributes.Nazev,
         Text: x.attributes.Text,
         publishedAt: x.attributes.publishedAt,
         Obrazek: x.attributes.Obrazek,
+        Stredisko: data.stredisko.data.attributes.Nazev
       },
     };
   });
@@ -55,9 +63,10 @@ export interface Props {
   Text: string;
   publishedAt: string;
   Obrazek: StrapiImage;
+  Stredisko: string;
 }
 
-const { Nazev, Text, publishedAt, Obrazek } = Astro.props;
+const { Nazev, Text, publishedAt, Obrazek, Stredisko } = Astro.props;
 
 const renderer = {
   heading(text, level) {
@@ -113,10 +122,10 @@ const content = marked.parse(Text);
 
 const date = new Date(publishedAt);
 
-const id = Astro.params.id;
+const novinka = Astro.params.novinka;
 ---
 
-<Layout title={Nazev} noSidePadding>
+<Layout title={Nazev} noSidePadding topPadding="m">
   <script
     type="application/ld+json"
     slot="head"
@@ -133,11 +142,11 @@ const id = Astro.params.id;
       "datePublished": "${publishedAt}"
     }`}
   ></script>
-  <meta property="og:title" content={Nazev + " | NASHURO"} slot="head" />
+  <meta property="og:title" content=`${Nazev} | ${Stredisko}`} slot="head" />
   <meta property="og:type" content="article" slot="head" />
   <meta
     property="og:url"
-    content={import.meta.env.PUBLIC_URL + "/novinky/" + id}
+    content={import.meta.env.PUBLIC_URL + "/novinky/" + novinka}
     slot="head"
   />
   <meta

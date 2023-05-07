@@ -34,18 +34,20 @@ export default function News({ data, Big }: NewsWithSwitchMenu) {
       noInnerPadding
     >
       <h1 className={h1_center}>Novinky</h1>
-      <SwitchMenuButtonWrapper bigMarginBottom={Big}>
-        {Object.keys(data).map((x, i) =>
-          data[x].data.length > 0 ? (
-            <SwitchMenuButton
-              key={i}
-              text={x}
-              onClick={() => setSelected(x)}
-              selected={x === selected}
-            />
-          ) : null
-        )}
-      </SwitchMenuButtonWrapper>
+      {Object.keys(data).length > 1 && (
+        <SwitchMenuButtonWrapper bigMarginBottom={Big}>
+          {Object.keys(data).map((x, i) =>
+            data[x].data.length > 0 ? (
+              <SwitchMenuButton
+                key={i}
+                text={x}
+                onClick={() => setSelected(x)}
+                selected={x === selected}
+              />
+            ) : null
+          )}
+        </SwitchMenuButtonWrapper>
+      )}
       {Object.keys(data).map((x, i) => (
         <div
           key={i}

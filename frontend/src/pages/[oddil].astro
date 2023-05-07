@@ -1,0 +1,164 @@
+---
+import MarkdownDescription from "../components/MarkdownDescription.astro";
+import { StrapiImage } from "../customTypes";
+import Layout from "../layouts/Layout.astro";
+import Contacts from "../sections/Contacts.astro";
+import News from "../sections/News";
+import Units from "../sections/Units.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
+      {
+        oddily {
+            data {
+                attributes {
+                    Nazev
+                    Url
+                    Typ
+                    Popis
+                    Kontakty {
+                        Funkce
+                        vedouci {
+                            data {
+                                attributes {
+                                    Fotka {
+                                        data {
+                                            attributes {
+                                                url
+                                                formats
+                                            }
+                                        }
+                                    }
+                                    Jmeno
+                                    Telefon
+                                    Email
+                                }
+                            }
+                        }
+                    }
+                    novinky {
+                        data {
+                            attributes {
+                                Obrazek {
+                                    data {
+                                        attributes {
+                                            url
+                                            formats
+                                        }
+                                    }
+                                }
+                                Nazev
+                                Url
+                                Popis
+                            }
+                        }
+                    }
+                    druziny {
+                        data {
+                            attributes {
+                                Obrazek {
+                                    data {
+                                        attributes {
+                                            url
+                                            formats
+                                        }
+                                    }
+                                }
+                                Nazev
+                                Url
+                                Typ
+                            }
+                        }
+                    }
+                    SocialMediaObrazek {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stredisko {
+            data {
+                attributes {
+                    Nazev
+                }
+            }
+        }
+    }
+    `,
+    }),
+  });
+
+  const Json = await response.json();
+  const data = Json.data;
+
+  return data.oddily.data.map((x) => {
+    return {
+      params: { oddil: x.attributes.Url },
+      props: {
+        Nazev: x.attributes.Nazev,
+        Typ: x.attributes.Typ,
+        Popis: x.attributes.Popis,
+        Kontakty: x.attributes.Kontakty,
+        novinky: { oddil: x.attributes.novinky },
+        druziny: x.attributes.druziny,
+        SocialMediaObrazek: x.attributes.SocialMediaObrazek,
+        Stredisko: data.stredisko.data.attributes.Nazev,
+      },
+    };
+  });
+}
+
+export interface Props {
+  Nazev: string;
+  Typ: string;
+  Popis: string;
+  Kontakty: any;
+  novinky: any;
+  druziny: any;
+  SocialMediaObrazek: StrapiImage;
+  Stredisko: string;
+}
+
+const {
+  Nazev,
+  Typ,
+  Popis,
+  Kontakty,
+  novinky,
+  druziny,
+  SocialMediaObrazek,
+  Stredisko,
+} = Astro.props;
+const oddil = Astro.params.oddil;
+---
+
+<Layout title={`Skautský oddíl ${Nazev}`}>
+  <meta
+    property="og:title"
+    content={`Skautský oddíl ${Nazev} | ${Stredisko}`}
+    slot="head"
+  />
+  <meta
+    property="og:url"
+    content={import.meta.env.PUBLIC_URL + `/${oddil}`}
+    slot="head"
+  />
+  <meta
+    property="og:image"
+    content={import.meta.env.PUBLIC_STRAPI + SocialMediaObrazek}
+    slot="head"
+  />
+
+  <MarkdownDescription markdown={Popis} />
+  <Units oddilUrl={oddil} data={druziny} />
+  <News client:idle data={novinky} />
+  <Contacts data={Kontakty} />
+</Layout>
