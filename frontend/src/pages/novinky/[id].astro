@@ -112,6 +112,8 @@ marked.use({ renderer });
 const content = marked.parse(Text);
 
 const date = new Date(publishedAt);
+
+const id = Astro.params.id;
 ---
 
 <Layout title={Nazev} noSidePadding>
@@ -131,6 +133,21 @@ const date = new Date(publishedAt);
       "datePublished": "${publishedAt}"
     }`}
   ></script>
+  <meta property="og:title" content={Nazev + " | NASHURO"} slot="head" />
+  <meta property="og:type" content="article" slot="head" />
+  <meta
+    property="og:url"
+    content={import.meta.env.PUBLIC_URL + "/novinky/" + id}
+    slot="head"
+  />
+  <meta
+    property="og:image"
+    content={import.meta.env.PUBLIC_STRAPI +
+      (Obrazek.data.attributes.formats.medium?.url ||
+        Obrazek.data.attributes.url)}
+    slot="head"
+  />
+
   <article class="max-w-2xl w-full mx-auto flex items-center flex-col pb-12">
     <h1 class={h1_center + " px-10"}>
       {Nazev}

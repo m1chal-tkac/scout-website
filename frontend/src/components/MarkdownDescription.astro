@@ -1,7 +1,7 @@
 ---
 import { marked } from "marked";
 import Section from "./Section";
-import { h1 } from "./typography";
+import { h1, h2, h3, h4, h5 } from "./typography";
 
 export interface Props {
   markdown: string;
@@ -11,14 +11,57 @@ const { markdown } = Astro.props;
 
 const renderer = {
   heading(text, level) {
-    return `<h${level} class="${h1}">
+    return `<h${level} class="${
+      level === 1
+        ? h1
+        : level === 2
+        ? h2
+        : level === 3
+        ? h3
+        : level === 4
+        ? h4
+        : h5
+    }">
               ${text}
             </h${level}>`;
   },
   paragraph(text) {
-    return `<p class="max-w-lg mb-4 leading-8 text-center">
+    return `<p class="mb-4 leading-8 text-center">
               ${text}
             </p>`;
+  },
+  list(body, ordered, start) {
+    return ordered
+      ? `<ol start=${start} class="-mt-4 mb-4 list-decimal pl-6">
+          ${body}
+        </ol>`
+      : `<ul class="-mt-4 mb-4 list-disc pl-6">
+          ${body}
+        </ul>`;
+  },
+  listitem(text) {
+    return `<li>
+              <span class="relative left-2">
+                ${text}
+              </span>
+            </li>`;
+  },
+  blockquote(quote) {
+    return `<div class="bg-gray-200 rounded-md px-3 py-4 mb-4 border-l-4 border-gray-300">
+              ${/<p[^>]*>(.*)<\/p>/i.exec(quote.replaceAll("\n", ""))[1].trim()}
+            </div>`;
+  },
+  link(href, title, text) {
+    return `<a href="${href}" target="_blank" class="text-primary-100 underline">
+              ${text}
+            </a>`;
+  },
+  image(href, title, text) {
+    return `<img
+              alt="${text}"
+              src="${import.meta.env.PUBLIC_STRAPI + href}"
+              class="my-6"
+            />`;
   },
 };
 
@@ -28,5 +71,5 @@ const content = marked.parse(markdown);
 ---
 
 <Section>
-  <div class="w-full flex flex-col items-center" set:html={content} />
+  <div class="max-w-xl w-full mx-auto flex flex-col items-center" set:html={content} />
 </Section>

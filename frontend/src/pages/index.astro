@@ -108,9 +108,23 @@ const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
                   }
                 }
               }
+              SocialMediaObrazek {
+                data {
+            			attributes {
+              			url
+            			}
+          			}
+              }
       			}
     		  }
   		  }
+        stredisko {
+          data {
+            attributes {
+              Nazev
+            }
+          }
+        }
 	    }
       `,
   }),
@@ -179,6 +193,18 @@ Object.keys(novinkyData).map(x => {
 ---
 
 <Layout noTopPadding>
+  <meta property="og:title" content={`Skautské středisko ${data.stredisko.data.attributes.Nazev}`} slot="head" />
+  <meta
+    property="og:url"
+    content={import.meta.env.PUBLIC_URL}
+    slot="head"
+  />
+  <meta
+    property="og:image"
+    content={import.meta.env.PUBLIC_STRAPI + data.uvodniStranka.data.attributes.SocialMediaObrazek.data.attributes.url}
+    slot="head"
+  />
+
   <div slot="outside" class="min-h-full w-full relative mb-24">
     <StrapiPicture
       image={data.uvodniStranka.data.attributes.Obrazek}
