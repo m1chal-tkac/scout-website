@@ -52,7 +52,7 @@
       "repeatable": true,
       "component": "default.sponzor"
     },
-    "SocialMediaImage": {
+    "SocialMediaObrazek": {
       "type": "media",
       "multiple": false,
       "required": true,
