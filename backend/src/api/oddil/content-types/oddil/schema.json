@@ -16,7 +16,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Nazev": {
       "type": "string",
@@ -52,6 +54,14 @@
       "relation": "oneToMany",
       "target": "api::druzina.druzina",
       "mappedBy": "oddil"
+    },
+    "SocialMediaObrazek": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
