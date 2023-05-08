@@ -26,7 +26,6 @@ const data = Json.data;
 export interface Props {
   title?: string;
   topPadding?: "l" | "m" | "no";
-  noSidePadding?: boolean;
 }
 
 const title = Astro.props.title
@@ -34,7 +33,6 @@ const title = Astro.props.title
   : `Skautské středisko ${data.stredisko.data.attributes.Nazev}`;
 
 const topPadding = Astro.props.topPadding;
-const noSidePadding = Astro.props.noSidePadding;
 ---
 
 <!DOCTYPE html>
@@ -56,7 +54,7 @@ const noSidePadding = Astro.props.noSidePadding;
       <main
         class={`min-h-full shrink-0 ${
           topPadding === "no" ? "" : topPadding === "m" ? "pt-12" : "pt-24"
-        } max-w-7xl w-full mx-auto ${noSidePadding ? "" : "px-10"}`}
+        } max-w-7xl w-full mx-auto`}
       >
         <slot />
       </main>

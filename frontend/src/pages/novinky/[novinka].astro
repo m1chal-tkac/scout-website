@@ -3,41 +3,14 @@ import { marked } from "marked";
 import { h1_center, h2, h3, h4, h5 } from "../../components/typography";
 import { StrapiImage } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
+import GqlQuery from "../../graphql/novinky/[novinka].gql?raw";
 
 export async function getStaticPaths() {
   const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: `
-      {
-        novinky(pagination: { limit: -1 }) {
-            data {
-                attributes {
-                    Nazev
-                    Url
-                    Text
-                    publishedAt
-                    Obrazek {
-                        data {
-                            attributes {
-                                url
-                                formats
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        stredisko {
-          data {
-            attributes {
-              Nazev
-            }
-          }
-        }
-    }
-    `,
+      query: GqlQuery,
     }),
   });
 
@@ -52,7 +25,7 @@ export async function getStaticPaths() {
         Text: x.attributes.Text,
         publishedAt: x.attributes.publishedAt,
         Obrazek: x.attributes.Obrazek,
-        Stredisko: data.stredisko.data.attributes.Nazev
+        Stredisko: data.stredisko.data.attributes.Nazev,
       },
     };
   });
@@ -125,7 +98,7 @@ const date = new Date(publishedAt);
 const novinka = Astro.params.novinka;
 ---
 
-<Layout title={Nazev} noSidePadding topPadding="m">
+<Layout title={Nazev} topPadding="m">
   <script
     type="application/ld+json"
     slot="head"
@@ -142,7 +115,7 @@ const novinka = Astro.params.novinka;
       "datePublished": "${publishedAt}"
     }`}
   ></script>
-  <meta property="og:title" content=`${Nazev} | ${Stredisko}`} slot="head" />
+  <meta property="og:title" content=`${Nazev} | ${Stredisko}` } slot="head" />
   <meta property="og:type" content="article" slot="head" />
   <meta
     property="og:url"

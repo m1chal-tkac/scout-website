@@ -1,11 +1,13 @@
 ---
-import Contact from "../components/Cards/Contact/Contact.astro";
+import Contact from "../components/Cards/Contact";
 import FlexWrapper from "../components/Cards/FlexWrapper";
 import Section from "../components/Section";
 import { h1_cards_section } from "../components/typography";
 import { StrapiImage } from "../customTypes";
 
 export interface Props {
+  heading?: string;
+  hideButton?: boolean;
   data: {
     Funkce: string;
     vedouci: {
@@ -22,10 +24,15 @@ export interface Props {
 }
 
 const data = Astro.props.data;
+const heading = Astro.props.heading;
+const hideButton = Astro.props.hideButton;
 ---
 
-<Section button="Všechny Kontakty" url="/kontakty">
-  <h1 class={h1_cards_section}>Kontakty</h1>
+<Section
+  button={hideButton ? undefined : "Všechny Kontakty"}
+  url={hideButton ? undefined : "/kontakty"}
+>
+  <h1 class={h1_cards_section}>{heading ? heading : "Kontakty"}</h1>
   <FlexWrapper>
     {
       data.map((x) => (

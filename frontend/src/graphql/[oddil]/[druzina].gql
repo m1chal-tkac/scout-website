@@ -1,0 +1,38 @@
+{
+  druziny {
+    data {
+      attributes {
+        Nazev
+        Url
+        Popis
+        Kontakty {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+        oddil {
+          data {
+            attributes {
+              Url
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,12 +5,13 @@ import SwitchMenuButton, {
 } from "../components/SwitchMenu/Button";
 import { h1_cards_section, h1_center } from "../components/typography";
 import { StrapiImages } from "../customTypes";
+import Map from "../components/Map";
 
 interface ClubHouse {
   data: {
     Nazev: string;
     Adresa: string;
-    Kod: string;
+    MapyCzKod: string;
     Obrazky: StrapiImages;
     spravce: {
       data: {
@@ -45,7 +46,9 @@ export default function ClubHouse({ data }: ClubHouse) {
 
   return (
     <Section>
-      <h1 className={data.length > 1? h1_center: h1_cards_section}>Naše klubovna</h1>
+      <h1 className={data.length > 1 ? h1_center : h1_cards_section}>
+        {data.length > 1 ? "Naše klubovny" : "Naše klubovna"}
+      </h1>
       {data.length > 1 && (
         <SwitchMenuButtonWrapper>
           {data.map((x, i) => (
@@ -68,7 +71,7 @@ export default function ClubHouse({ data }: ClubHouse) {
             i === selected ? "" : "hidden"
           }`}
         >
-          <div className="lg:max-w-lg w-full min-h-80 lg:mr-8 lg:mb-0 mb-4 aspect-[3/2]">
+          <div className="lg:max-w-lg w-full lg:mr-8 lg:mb-0 mb-4 aspect-[3/2]">
             {preview !== -1 ? (
               <img
                 src={
@@ -79,30 +82,8 @@ export default function ClubHouse({ data }: ClubHouse) {
                 alt={x.Nazev}
                 className="h-full w-full object-cover"
               />
-            ) : cookies === Cookies.loading ? (
-              <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center">
-                <p className="mb-4">Načítání...</p>
-              </div>
-            ) : cookies === Cookies.true ? (
-              <iframe
-                src={`https://frame.mapy.cz/s/${x.Kod}`}
-                className="border-0"
-                width="100%"
-                height="100%"
-              />
             ) : (
-              <div className="bg-gray-300 w-full h-full flex flex-col justify-center items-center">
-                <p className="mb-4">Mapy.cz používá Cookies.</p>
-                <button
-                  className="font-bold text-white bg-primary-100 px-4 py-2 rounded-md"
-                  onClick={() => {
-                    setCookies(Cookies.true);
-                    localStorage.setItem("MapyCzCookies", "1");
-                  }}
-                >
-                  Povolit
-                </button>
-              </div>
+              <Map code={x.MapyCzKod} />
             )}
           </div>
           <div className="max-w-lg w-full">

@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GqlQuery from "../graphql/kontakty.gql?raw";
+import { h1_cards_section } from "../components/typography";
+import Section from "../components/Section";
+import Map from "../components/Map";
+import Contacts from "../sections/Contacts.astro";
+import ContactsWithTwoSubmenus from "../sections/ContactsWithTwoSubmenus";
+
+const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: GqlQuery,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
+
+const vedouciOddilu = [];
+
+data.oddily.data.forEach((x) => {
+  x.attributes.Kontakty.forEach((y) => {
+    vedouciOddilu.push({
+      Funkce: `vedoucí oddílu ${x.attributes.Nazev}`,
+      vedouci: y.vedouci,
+    });
+  });
+});
+
+const radci = {};
+
+data.druziny.data.forEach((x) => {
+  if (typeof radci[x.attributes.oddil.data.attributes.Nazev] !== "object") {
+    radci[x.attributes.oddil.data.attributes.Nazev] = {};
+  }
+  radci[x.attributes.oddil.data.attributes.Nazev][x.attributes.Nazev] = {
+    data: x.attributes.Kontakty,
+  };
+});
+---
+
+<Layout topPadding="m">
+  <Section noInnerPadding>
+    <h1 class={h1_cards_section + " px-10"}>Základní Informace</h1>
+    <div class="flex justify-center lg:flex-row flex-col lg:px-10">
+      <div
+        class="lg:max-w-lg w-full lg:mr-8 lg:mb-0 mb-8 aspect-[3/2] sm:aspect-[5/2] lg:aspect-[3/2]"
+      >
+        <Map client:load code={data.stredisko.data.attributes.MapyCzKod} />
+      </div>
+      <div class="max-w-lg w-full px-10 lg:px-0">
+        <address class="not-italic">
+          <h1 class="font-skautbold mb-4">
+            {data.stredisko.data.attributes.CelyNazev}
+          </h1>
+          <p class="mb-2">sídlo: {data.stredisko.data.attributes.Sidlo}</p>
+          <p class="mb-2">
+            číslo střediska: {data.stredisko.data.attributes.CisloStrediska}
+          </p>
+          <p class="mb-2">ičo: {data.stredisko.data.attributes.Ico}</p>
+          <p class="mb-2">
+            číslo účtu: {data.stredisko.data.attributes.CisloUctu}
+          </p>
+          <p>email: {data.stredisko.data.attributes.Email}</p>
+        </address>
+      </div>
+    </div>
+  </Section>
+  <Contacts
+    heading="Středisko"
+    hideButton
+    data={data.uvodniStranka.data.attributes.Kontakty}
+  />
+  <Contacts heading="Vedoucí oddílů" hideButton data={vedouciOddilu} />
+  <ContactsWithTwoSubmenus client:load data={radci} />
+</Layout>

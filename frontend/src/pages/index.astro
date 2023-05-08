@@ -7,137 +7,26 @@ import Contacts from "../sections/Contacts.astro";
 import News from "../sections/News";
 import Sponsors from "../sections/Sponsors.astro";
 import Units from "../sections/Units.astro";
+import GqlQuery from "../graphql/index.gql?raw";
 
 const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    query: `
-	  {
-  		uvodniStranka {
-    		data {
-      			attributes {
-        			Obrazek {
-          				data {
-            				attributes {
-              					url
-              					alternativeText
-              					formats
-            				}
-          				}
-        			}
-        			Slogan
-					    Popis
-              oddily {
-                data {
-                  id
-                  attributes {
-                    Obrazek {
-                      data {
-                        attributes {
-                          url
-                          alternativeText
-                          formats
-                        }
-                      }
-                    }
-                    Nazev
-                    Url
-                    Typ
-                    druziny {
-                      data {
-                        attributes {
-                          Nazev
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              Kontakty {
-                Funkce
-                vedouci {
-                  data {
-                    attributes {
-                      Jmeno
-                      Telefon
-                      Email
-                      Fotka {
-                        data {
-                          attributes {
-                            url
-                            formats
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              Klubovny {
-                Nazev
-                Adresa
-                Kod
-                Obrazky {
-                  data {
-                    attributes {
-                      url
-                      formats
-                    }
-                  }
-                }
-                spravce {
-                  data {
-                    attributes {
-                      Jmeno
-                      Telefon
-                      Email
-                    }
-                  }
-                }
-              }
-              Sponzori {
-                Nazev
-                Odkaz
-                Obrazek {
-                  data {
-                    attributes {
-                      url
-                      formats
-                    }
-                  }
-                }
-              }
-              SocialMediaObrazek {
-                data {
-            			attributes {
-              			url
-            			}
-          			}
-              }
-      			}
-    		  }
-  		  }
-        stredisko {
-          data {
-            attributes {
-              Nazev
-            }
-          }
-        }
-	    }
-      `,
+    query: GqlQuery,
   }),
 });
 
 const Json = await response.json();
 const data = Json.data;
 
-const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    query: `
+const novinkyResponse = await fetch(
+  import.meta.env.PUBLIC_STRAPI + "/graphql",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
       {
         novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
@@ -156,7 +45,8 @@ const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", 
             }
           }
         }
-        ${data.uvodniStranka.data.attributes.oddily.data.map((x) => `
+        ${data.uvodniStranka.data.attributes.oddily.data.map(
+          (x) => `
         _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
             attributes {
@@ -174,34 +64,39 @@ const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", 
             }
           }
         }  
-        `)}
+        `
+        )}
       }
       `,
-  }),
-});
+    }),
+  }
+);
 
 const novinkyJson = await novinkyResponse.json();
 const novinkyData = novinkyJson.data;
 
-const novinky = {"Středisko": novinkyData["novinky"]};
+const novinky = { Středisko: novinkyData["novinky"] };
 
-Object.keys(novinkyData).map(x => {
-  if(x === "novinky") return;
-  const oddil = data.uvodniStranka.data.attributes.oddily.data.find(y => y.id === x.split("_")[1]).attributes.Nazev;
+Object.keys(novinkyData).map((x) => {
+  if (x === "novinky") return;
+  const oddil = data.uvodniStranka.data.attributes.oddily.data.find(
+    (y) => y.id === x.split("_")[1]
+  ).attributes.Nazev;
   novinky[oddil] = novinkyData[x];
-})
+});
 ---
 
 <Layout topPadding="no">
-  <meta property="og:title" content={`Skautské středisko ${data.stredisko.data.attributes.Nazev}`} slot="head" />
   <meta
-    property="og:url"
-    content={import.meta.env.PUBLIC_URL}
+    property="og:title"
+    content={`Skautské středisko ${data.stredisko.data.attributes.Nazev}`}
     slot="head"
   />
+  <meta property="og:url" content={import.meta.env.PUBLIC_URL} slot="head" />
   <meta
     property="og:image"
-    content={import.meta.env.PUBLIC_STRAPI + data.uvodniStranka.data.attributes.SocialMediaObrazek.data.attributes.url}
+    content={import.meta.env.PUBLIC_STRAPI +
+      data.uvodniStranka.data.attributes.SocialMediaObrazek.data.attributes.url}
     slot="head"
   />
 

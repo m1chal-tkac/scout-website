@@ -24,11 +24,13 @@ const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
 const Json = await response.json();
 const data = Json.data;
 
-const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    query: `
+const novinkyResponse = await fetch(
+  import.meta.env.PUBLIC_STRAPI + "/graphql",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `
       {
         novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: -1 }, sort: "publishedAt:desc") {
           data {
@@ -48,7 +50,8 @@ const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", 
             }
           }
         }
-        ${data.oddily.data.map((x) => `
+        ${data.oddily.data.map(
+          (x) => `
         _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: -1 }, sort: "publishedAt:desc") {
           data {
             attributes {
@@ -67,24 +70,27 @@ const novinkyResponse = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", 
             }
           }
         }  
-        `)}
+        `
+        )}
       }
       `,
-  }),
-});
+    }),
+  }
+);
 
 const novinkyJson = await novinkyResponse.json();
 const novinkyData = novinkyJson.data;
 
-const novinky = {"Středisko": novinkyData["novinky"]};
+const novinky = { Středisko: novinkyData["novinky"] };
 
-Object.keys(novinkyData).map(x => {
-  if(x === "novinky") return;
-  const oddil = data.oddily.data.find(y => y.id === x.split("_")[1]).attributes.Nazev;
+Object.keys(novinkyData).map((x) => {
+  if (x === "novinky") return;
+  const oddil = data.oddily.data.find((y) => y.id === x.split("_")[1])
+    .attributes.Nazev;
   novinky[oddil] = novinkyData[x];
-})
+});
 ---
 
 <Layout title="Novinky" topPadding="m">
-    <News Big client:idle data={novinky} />
+  <News Big client:idle data={novinky} />
 </Layout>

@@ -1,0 +1,27 @@
+{
+  novinky(pagination: { limit: -1 }) {
+    data {
+      attributes {
+        Nazev
+        Url
+        Text
+        publishedAt
+        Obrazek {
+          data {
+            attributes {
+              url
+              formats
+            }
+          }
+        }
+      }
+    }
+  }
+  stredisko {
+    data {
+      attributes {
+        Nazev
+      }
+    }
+  }
+}

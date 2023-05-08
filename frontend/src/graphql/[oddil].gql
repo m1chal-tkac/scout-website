@@ -1,0 +1,79 @@
+{
+  oddily {
+    data {
+      attributes {
+        Nazev
+        Url
+        Popis
+        Kontakty {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+        novinky {
+          data {
+            attributes {
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+              Nazev
+              Url
+              Popis
+            }
+          }
+        }
+        druziny {
+          data {
+            attributes {
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+              Nazev
+              Url
+              Typ
+            }
+          }
+        }
+        SocialMediaObrazek {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  stredisko {
+    data {
+      attributes {
+        Nazev
+      }
+    }
+  }
+}

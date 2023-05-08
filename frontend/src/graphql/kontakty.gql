@@ -1,0 +1,102 @@
+{
+  stredisko {
+    data {
+      attributes {
+        CelyNazev
+        Sidlo
+        MapyCzKod
+        CisloStrediska
+        Ico
+        CisloUctu
+        Email
+      }
+    }
+  }
+  uvodniStranka {
+    data {
+      attributes {
+        Kontakty {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  oddily {
+    data {
+      attributes {
+        Nazev
+        Kontakty(filters: { Funkce: { eq: "vedoucí oddílu" } }) {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  druziny {
+    data {
+      attributes {
+        Nazev
+        oddil {
+          data {
+            attributes {
+              Nazev
+            }
+          }
+        }
+        Kontakty {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

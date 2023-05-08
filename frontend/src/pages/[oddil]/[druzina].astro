@@ -1,56 +1,15 @@
 ---
 import MarkdownDescription from "../../components/MarkdownDescription.astro";
-import { StrapiImage } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
 import Contacts from "../../sections/Contacts.astro";
-import News from "../../sections/News";
-import Units from "../../sections/Units.astro";
+import GqlQuery from "../../graphql/[oddil]/[druzina].gql?raw";
 
 export async function getStaticPaths() {
   const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: `
-      {
-        druziny {
-            data {
-                attributes {
-                    Nazev
-                    Url
-                    Popis
-                    Kontakty {
-                        Funkce
-                        vedouci {
-                            data {
-                                attributes {
-                                    Fotka {
-                                        data {
-                                            attributes {
-                                                url
-                                                formats
-                                            }
-                                        }
-                                    }
-                                    Jmeno
-                                    Telefon
-                                    Email
-                                }
-                            }
-                        }
-                    }
-                    oddil {
-                        data {
-                            attributes {
-                                Url
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    `,
+      query: GqlQuery,
     }),
   });
 
@@ -78,12 +37,7 @@ export interface Props {
   Kontakty: any;
 }
 
-const {
-  Nazev,
-  Popis,
-  Kontakty,
-} = Astro.props;
-const oddil = Astro.params.oddil;
+const { Nazev, Popis, Kontakty } = Astro.props;
 ---
 
 <Layout title={`Skautská družina ${Nazev}`}>

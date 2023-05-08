@@ -1,0 +1,113 @@
+{
+  uvodniStranka {
+    data {
+      attributes {
+        Obrazek {
+          data {
+            attributes {
+              url
+              alternativeText
+              formats
+            }
+          }
+        }
+        Slogan
+        Popis
+        oddily {
+          data {
+            id
+            attributes {
+              Obrazek {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                    formats
+                  }
+                }
+              }
+              Nazev
+              Url
+              Typ
+              druziny {
+                data {
+                  attributes {
+                    Nazev
+                  }
+                }
+              }
+            }
+          }
+        }
+        Kontakty {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Jmeno
+                Telefon
+                Email
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        Klubovny {
+          Nazev
+          Adresa
+          MapyCzKod
+          Obrazky {
+            data {
+              attributes {
+                url
+                formats
+              }
+            }
+          }
+          spravce {
+            data {
+              attributes {
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
+        Sponzori {
+          Nazev
+          Odkaz
+          Obrazek {
+            data {
+              attributes {
+                url
+                formats
+              }
+            }
+          }
+        }
+        SocialMediaObrazek {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+  stredisko {
+    data {
+      attributes {
+        Nazev
+      }
+    }
+  }
+}
