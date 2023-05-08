@@ -101,7 +101,7 @@ Pouze jeden záznam
 | Kontakty / Funkce  | Text           | :heavy_check_mark: |                                                               |
 | Kontakty / Vedoucí | Vedoucí        | :heavy_check_mark: |                                                               |
 | Novinky            | Novinky        |                    |                                                               |
-| Družiny            | Družiny        |                    |                                                               |
+| Družiny            | Družiny        | :heavy_check_mark: |                                                               |
 | SocialMediaObrazek | Obrázek        | :heavy_check_mark: | Obrázek který se ukáže při sdílení na Facebooku / Twitteru... |
 
 :warning: **Alespoň jeden z kontaktů by měl mít funkci vedoucí oddílu**
@@ -129,8 +129,8 @@ Pouze jeden záznam
 | Email                 | Text    | :heavy_check_mark: | stredisko@skaut.cz                         |
 | Sociální sítě / Typ   | Text    |                    |                                            |
 | Sociální sítě / Odkaz | Text    |                    |                                            |
-| Fotky / Název         | Text    |                    |                                            |
-| Fotky / Odkaz         | Text    |                    |                                            |
+| Fotky / Název         | Text    | :heavy_check_mark: |                                            |
+| Fotky / Odkaz         | Text    | :heavy_check_mark: |                                            |
 
 
 ### Úvodní stránka
