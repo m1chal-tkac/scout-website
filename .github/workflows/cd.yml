@@ -2,7 +2,8 @@ name: CD
 
 on:
   push:
-
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +17,8 @@ jobs:
         uses: actions/setup-node@v3
       - name: Install dependencies
         run: yarn --frozen-lockfile
+      - name: Copy .env file
+        run: echo '${{ secrets.ASTRO }}' > .env
       - name: Build
         run: yarn build
       - name: Archive artifact
