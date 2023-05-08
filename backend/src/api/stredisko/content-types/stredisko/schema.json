@@ -24,6 +24,10 @@
       "type": "string",
       "required": true
     },
+    "MapyCzKod": {
+      "type": "string",
+      "required": true
+    },
     "CisloStrediska": {
       "type": "string",
       "required": true,

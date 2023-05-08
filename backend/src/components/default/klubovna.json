@@ -10,7 +10,9 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Nazev": {
       "type": "string",
@@ -22,7 +24,7 @@
       "required": true,
       "unique": false
     },
-    "Kod": {
+    "MapyCzKod": {
       "type": "string",
       "required": true,
       "unique": false
