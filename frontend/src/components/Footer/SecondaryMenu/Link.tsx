@@ -7,7 +7,9 @@ interface Link {
 export default function Link({ Typ, Odkaz }: Link) {
   return (
     <li>
-      <a href={Odkaz}>{Typ}</a>
+      <a href={Odkaz} target="_blank">
+        {Typ}
+      </a>
     </li>
   );
 }
