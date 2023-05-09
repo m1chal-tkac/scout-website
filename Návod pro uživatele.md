@@ -54,8 +54,7 @@ Umožňují vytvářet několik záznamů se stejným scématem.
 - Oddíly
 - User (Nepoužívá se, je rozdílná od Settings / Administration panel / Users)
 - Vedoucí
-<br />
-<br />
+
 
 **Single types**
 
@@ -65,6 +64,10 @@ Pouze jeden záznam
 <br />
 <br />
 
+### Vytvoření záznamu
+Přečtěte si prosím [Návod pro autory](https://github.com/Michal124/scout-website/blob/master/N%C3%A1vod%20pro%20autory.md)
+<br />
+<br />
 
 ### Družiny
 | Pole               | Typ            | Povinné            | Obvyklá hodnota                   |
@@ -78,6 +81,9 @@ Pouze jeden záznam
 | Kontakty / Vedoucí | Vedoucí        | :heavy_check_mark: |                                   |
 | Oddíl              | Oddíl          | :heavy_check_mark: |                                   |
 
+<br />
+<br />
+
 
 ### Novinky
 | Pole    | Typ            | Povinné            | Obvyklá hodnota                   |
@@ -89,6 +95,8 @@ Pouze jeden záznam
 | Text    | Textový editor | :heavy_check_mark: |                                   |
 | Oddíl   | Oddíl          |                    |                                   |
 
+<br />
+<br />
 
 ### Oddíly
 | Pole               | Typ            | Povinné            | Obvyklá hodnota                                               |
@@ -106,6 +114,8 @@ Pouze jeden záznam
 
 :warning: **Alespoň jeden z kontaktů by měl mít funkci vedoucí oddílu**
 
+<br />
+<br />
 
 ### Vedoucí
 | Pole    | Typ     | Povinné            | Obvyklá hodnota            |
@@ -115,6 +125,8 @@ Pouze jeden záznam
 | Email   | Text    | :heavy_check_mark: |                            |
 | Telefon | Text    | :heavy_check_mark: |                            |
 
+<br />
+<br />
 
 ### Středisko
 | Pole                  | Typ     | Povinné            | Obvyklá hodnota                            |
@@ -132,6 +144,8 @@ Pouze jeden záznam
 | Fotky / Název         | Text    | :heavy_check_mark: |                                            |
 | Fotky / Odkaz         | Text    | :heavy_check_mark: |                                            |
 
+<br />
+<br />
 
 ### Úvodní stránka
 | Pole                 | Typ     | Povinné            | Obvyklá hodnota                                               |
@@ -152,6 +166,8 @@ Pouze jeden záznam
 | Sponzoři / Odkaz     | Text    | :heavy_check_mark: |                                                               |
 | SocialMediaObrazek   |         | :heavy_check_mark: | Obrázek který se ukáže při sdílení na Facebooku / Twitteru... |
 
+<br />
+<br />
 
 ### Mapy.cz kód
 Kód Mapy.cz se dá získat po kliknutí na sdílet / Vložit mapu do vlastních stránek
