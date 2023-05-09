@@ -28,7 +28,7 @@ export default function Article({
       } block`}
     >
       <article
-        className={`flex items-center ${Big ? "" : "mx-4"} mt-4 flex-col`}
+        className={`flex items-center mx-4 mt-4 flex-col`}
       >
         {Big && <h1 className={h1_center}>{Nazev}</h1>}
         {Big && date && (
