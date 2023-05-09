@@ -95,6 +95,5 @@ cd frontend && yarn && yarn dev
 ```
 2. Terminál
 ```
-cd frontend && yarn && yarn dev
 cd frontend && yarn tailwind
 ```
