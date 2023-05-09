@@ -66,7 +66,7 @@ Pouze jeden záznam
 
 ### Vytvoření záznamu
 
-Přečtěte si prosím [Návod pro autory](https://github.com/Michal124/scout-website/blob/master/N%C3%A1vod%20pro%20autory.md)
+Přečtěte si prosím [Návod pro autory](https://github.com/Michal124/scout-website/blob/master/N%C3%A1vod%20pro%20autory.md#vytvo%C5%99en%C3%AD-novinky)
 
 :warning: **Nová data se nenačtou hned. Stránky jsou nastaveny na obnovení co 12 hodin!**
 <br />
