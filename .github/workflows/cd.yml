@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: "yarn"
+          cache-dependency-path: frontend/yarn.lock
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Copy .env file
