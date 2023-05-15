@@ -56,7 +56,7 @@ const {
 } = Astro.props;
 const oddil = Astro.params.oddil;
 
-const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.length} družinky. Vedoucí střediska je ${Kontakty[0].vedouci.data.attributes.Jmeno}.`;
+const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.data.length} družinky. Vedoucí střediska je ${Kontakty[0].vedouci.data.attributes.Jmeno}.`;
 ---
 
 <Layout title={`Skautský oddíl ${Nazev}`}>
