@@ -19,7 +19,7 @@ const { Nazev, Typ, Url, Obrazek } = Astro.props;
       src={import.meta.env.PUBLIC_STRAPI +
         (Obrazek.data.attributes.formats.thumbnail?.url ||
           Obrazek.data.attributes.url)}
-      alt={Obrazek.data.attributes.alternativeText}
+      alt={Nazev}
       class="h-28 w-28 rounded-full"
     />
     <h1 class={h2}>{Nazev}</h1>
