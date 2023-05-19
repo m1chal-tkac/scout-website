@@ -20,6 +20,9 @@ jobs:
           token: ${{ secrets.PAT }}
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
+        with:
+          cache: "yarn"
+          cache-dependency-path: backend/yarn.lock
       - name: Upgrade packages
         run: |
           npm install -g npm-check-updates
