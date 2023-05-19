@@ -86,9 +86,7 @@ Object.keys(novinkyData).map((x) => {
 
 const description = `Jsme skautské středisko ${
   data.stredisko.data.attributes.Nazev
-}. Máme ${
-  data.uvodniStranka.data.attributes.oddily.data.length
-} oddíly a ${data.uvodniStranka.data.attributes.oddily.data.reduce(
+}. Máme ${data.oddily.data.length} oddíly a ${data.oddily.data.reduce(
   (acu, cur) => acu + cur.attributes.druziny.data.length,
   0
 )} družinek. Vedoucí střediska je ${
@@ -104,9 +102,9 @@ const description = `Jsme skautské středisko ${
     content={`Skautské středisko ${data.stredisko.data.attributes.Nazev}`}
     slot="head"
   />
-  <meta property="og:type" content="website" slot="head">
+  <meta property="og:type" content="website" slot="head" />
   <meta property="og:url" content={import.meta.env.PUBLIC_URL} slot="head" />
-  <meta property="og:description" content={description} slot="head">
+  <meta property="og:description" content={description} slot="head" />
   <meta
     property="og:image"
     content={import.meta.env.PUBLIC_STRAPI +
