@@ -42,7 +42,7 @@
     data {
       attributes {
         Nazev
-        Kontakty(filters: { Funkce: { eq: "vedoucí oddílu" } }) {
+        Kontakty(filters: { Funkce: { startsWith: "vedoucí" } }) {
           Funkce
           vedouci {
             data {

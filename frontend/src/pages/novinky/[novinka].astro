@@ -37,9 +37,10 @@ export interface Props {
   publishedAt: string;
   Obrazek: StrapiImage;
   Stredisko: string;
+  Popis: string;
 }
 
-const { Nazev, Text, publishedAt, Obrazek, Stredisko } = Astro.props;
+const { Nazev, Text, publishedAt, Obrazek, Stredisko, Popis } = Astro.props;
 
 const renderer = {
   heading(text, level) {
@@ -112,16 +113,21 @@ const novinka = Astro.params.novinka;
         (Obrazek.data.attributes.formats.small?.url ||
           Obrazek.data.attributes.url)
       }",
-      "datePublished": "${publishedAt}"
+      "datePublished": "${publishedAt}",
+      "about": "${Popis}"
     }`}
   ></script>
-  <meta property="og:title" content=`${Nazev} | ${Stredisko}` } slot="head" />
+
+  <meta name="description" content={Popis} slot="head" />
+
+  <meta property="og:title" content={`${Nazev} | ${Stredisko}`} slot="head" />
   <meta property="og:type" content="article" slot="head" />
   <meta
     property="og:url"
     content={import.meta.env.PUBLIC_URL + "/novinky/" + novinka}
     slot="head"
   />
+  <meta property="og:description" content={Popis} slot="head">
   <meta
     property="og:image"
     content={import.meta.env.PUBLIC_STRAPI +

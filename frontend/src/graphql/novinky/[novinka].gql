@@ -4,6 +4,7 @@
       attributes {
         Nazev
         Url
+        Popis
         Text
         publishedAt
         Obrazek {

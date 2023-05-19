@@ -26,7 +26,7 @@ interface NewsWithSwitchMenu {
 }
 
 export default function News({ data, Big }: NewsWithSwitchMenu) {
-  const [selected, setSelected] = useState(Object.keys(data)[0]);
+  const [selected, setSelected] = useState(Object.keys(data).find(x => data[x].data.length > 0) || "");
   return (
     <Section
       button={Big ? undefined : "Všechny Novinky"}

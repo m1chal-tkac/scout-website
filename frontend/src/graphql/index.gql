@@ -107,6 +107,7 @@
     data {
       attributes {
         Nazev
+        Email
       }
     }
   }
