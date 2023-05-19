@@ -12,8 +12,13 @@ jobs:
       run:
         working-directory: backend
     steps:
+      - name: Setup job
+        uses: actions/checkout@v3
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
       - name: Upgrade packages
         run: |
+          npm install -g npm-check-updates
           ncu -u
           git config user.name github-actions
           git config user.email github-actions@github.com
