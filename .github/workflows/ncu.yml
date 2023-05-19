@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v3
       - name: Upgrade packages
         run: |
+          rm yarn.lock
           npm install -g npm-check-updates
           ncu -u
           npm install --package-lock-only
