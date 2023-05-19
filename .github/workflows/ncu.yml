@@ -24,7 +24,9 @@ jobs:
         run: |
           npm install -g npm-check-updates
           ncu -u
-          yarn generate-lock-entry > yarn.lock
+          npm install --package-lock-only
+          yarn import
+          rm package-lock.json
       - name: Push to Github
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
