@@ -26,6 +26,7 @@ export async function getStaticPaths() {
         publishedAt: x.attributes.publishedAt,
         Obrazek: x.attributes.Obrazek,
         Stredisko: data.stredisko.data.attributes.Nazev,
+        Popis: x.attributes.Popis,
       },
     };
   });
@@ -127,7 +128,7 @@ const novinka = Astro.params.novinka;
     content={import.meta.env.PUBLIC_URL + "/novinky/" + novinka}
     slot="head"
   />
-  <meta property="og:description" content={Popis} slot="head">
+  <meta property="og:description" content={Popis} slot="head" />
   <meta
     property="og:image"
     content={import.meta.env.PUBLIC_STRAPI +
