@@ -13,32 +13,6 @@
         }
         Slogan
         Popis
-        oddily {
-          data {
-            id
-            attributes {
-              Obrazek {
-                data {
-                  attributes {
-                    url
-                    alternativeText
-                    formats
-                  }
-                }
-              }
-              Nazev
-              Url
-              Typ
-              druziny {
-                data {
-                  attributes {
-                    Nazev
-                  }
-                }
-              }
-            }
-          }
-        }
         Kontakty {
           Funkce
           vedouci {
@@ -97,6 +71,32 @@
           data {
             attributes {
               url
+            }
+          }
+        }
+      }
+    }
+  }
+  oddily {
+    data {
+      id
+      attributes {
+        Obrazek {
+          data {
+            attributes {
+              url
+              alternativeText
+              formats
+            }
+          }
+        }
+        Nazev
+        Url
+        Typ
+        druziny {
+          data {
+            attributes {
+              Nazev
             }
           }
         }

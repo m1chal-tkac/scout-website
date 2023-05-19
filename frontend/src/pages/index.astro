@@ -45,7 +45,7 @@ const novinkyResponse = await fetch(
             }
           }
         }
-        ${data.uvodniStranka.data.attributes.oddily.data.map(
+        ${data.oddily.data.map(
           (x) => `
         _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
@@ -79,9 +79,8 @@ const novinky = { Středisko: novinkyData["novinky"] };
 
 Object.keys(novinkyData).map((x) => {
   if (x === "novinky") return;
-  const oddil = data.uvodniStranka.data.attributes.oddily.data.find(
-    (y) => y.id === x.split("_")[1]
-  ).attributes.Nazev;
+  const oddil = data.oddily.data.find((y) => y.id === x.split("_")[1])
+    .attributes.Nazev;
   novinky[oddil] = novinkyData[x];
 });
 ---
@@ -118,7 +117,7 @@ Object.keys(novinkyData).map((x) => {
     </div>
   </div>
   <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
-  <Units data={data.uvodniStranka.data.attributes.oddily} />
+  <Units data={data.oddily} />
   <News client:idle data={novinky} />
   <Contacts data={data.uvodniStranka.data.attributes.Kontakty} />
   <ClubHouse client:idle data={data.uvodniStranka.data.attributes.Klubovny} />
