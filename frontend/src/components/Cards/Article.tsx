@@ -27,13 +27,11 @@ export default function Article({
         Big ? "max-w-2xl w-full mb-12 last:mb-0" : "flex-[0_1_15rem] mb-8"
       } block`}
     >
-      <article
-        className={`flex items-center mx-4 mt-4 flex-col`}
-      >
+      <article className={`flex items-center mx-4 mt-4 flex-col`}>
         {Big && <h1 className={h1_center}>{Nazev}</h1>}
         {Big && date && (
           <p className="mb-3 mx-auto">
-            {date.getDay()}.{date.getMonth() + 1}. {date.getFullYear()}
+            {date.getDate()}.{date.getMonth() + 1}. {date.getFullYear()}
           </p>
         )}
         <img
