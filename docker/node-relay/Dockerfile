@@ -2,7 +2,7 @@ FROM node:lts
 
 WORKDIR /app
 
-COPY index.js ./
+COPY node-relay/index.js ./
 
 EXPOSE 8080
 
