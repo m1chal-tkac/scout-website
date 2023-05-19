@@ -22,4 +22,4 @@ Poté co vyplníte všechny pole **(pokud necháte oddíl prázdný, novinka bud
 :warning: **Novinka je jediný typ, který je nutné po uložení publikovat.**
 ![Publikování novinky](https://user-images.githubusercontent.com/57263460/237029767-c4bb408c-a2ad-49d4-9ea2-92b0fba311ec.jpg)
 
-:warning: **Nová data se nenačtou hned. Stránky jsou nastaveny na obnovení co 12 hodin!**
+**Nová data se načtou během přibližně 5 minut**

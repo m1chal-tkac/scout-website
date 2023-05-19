@@ -42,6 +42,7 @@ services:
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
+      NODE_RELAY_TOKEN: ${NODE_RELAY_TOKEN}
     volumes:
       - strapi-public:/app/public
     networks:
@@ -49,6 +50,20 @@ services:
         ipv4_address: 10.5.0.11
     depends_on:
       - postgres
+
+  node-relay:
+    container_name: node-relay
+    build:
+      context: .
+      dockerfile: "./node-relay/Dockerfile"
+    restart: unless-stopped
+    environment:
+      NODE_RELAY_TOKEN: ${NODE_RELAY_TOKEN}
+      GITHUB_REPO: ${GITHUB_REPO}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    networks:
+      strapi:
+        ipv4_address: 10.5.0.12
 
   nginx:
     container_name: nginx
@@ -64,7 +79,7 @@ services:
       - "443:443"
     networks:
       strapi:
-        ipv4_address: 10.5.0.12
+        ipv4_address: 10.5.0.13
     depends_on:
       - strapi
 
