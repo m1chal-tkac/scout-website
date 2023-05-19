@@ -86,7 +86,8 @@ PUBLIC_URL=https://vase-stranky.cz
 ### Použitím Github Actions
 
 .github / deploy.yml<br />
-Spustí se automaticky, zařídí deploy do Github Pages (ty je nutné předem dovolit).
+Spustí se automaticky, zařídí deploy do Github Pages (ty je nutné předem dovolit).<br />
+V nastavení Webhooks Strapi musíte přidat nový záznam http://10.5.0.12:8080/
 
 ### Manuálně
 
