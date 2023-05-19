@@ -28,11 +28,6 @@
       "type": "richtext",
       "required": true
     },
-    "oddily": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::oddil.oddil"
-    },
     "Kontakty": {
       "type": "component",
       "repeatable": true,
