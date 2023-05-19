@@ -18,7 +18,7 @@ Novinku lze vytvořit v Content Manager / Collection types / Novinky
 <br />
 <br />
 
-Poté co vyplníte všechny pole (oddíl není povinné pole), musíte novinku uložit a poté publikovat.<br />
+Poté co vyplníte všechny pole **(pokud necháte oddíl prázdný, novinka bude pro celé středisko)**, musíte novinku uložit a poté publikovat.<br />
 :warning: **Novinka je jediný typ, který je nutné po uložení publikovat.**
 ![Publikování novinky](https://user-images.githubusercontent.com/57263460/237029767-c4bb408c-a2ad-49d4-9ea2-92b0fba311ec.jpg)
 
