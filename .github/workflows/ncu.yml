@@ -1,0 +1,22 @@
+name: Upgrade packages
+
+on:
+  schedule:
+    - cron: "0 0 1,15 * *"
+  workflow_dispatch:
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - name: Upgrade packages
+        run: |
+          ncu -u
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Upgrade packages"
+          git push
