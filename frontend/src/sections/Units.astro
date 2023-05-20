@@ -39,7 +39,7 @@ const oddil = Astro.props.oddilUrl;
         <Unit
           Nazev={x.attributes.Nazev}
           Typ={x.attributes.Typ}
-          Url={(oddil ? oddil + "/" : "") + x.attributes.Url}
+          Url={"/" + (oddil ? oddil + "/" : "") + x.attributes.Url}
           Obrazek={x.attributes.Obrazek}
         >
           {x.attributes.druziny &&
