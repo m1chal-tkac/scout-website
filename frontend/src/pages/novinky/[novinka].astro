@@ -145,7 +145,6 @@ const novinka = Astro.params.novinka;
       {date.getDate()}.{date.getMonth() + 1}. {date.getFullYear()}
     </p>
     <img
-      loading="lazy"
       src={import.meta.env.PUBLIC_STRAPI +
         (Obrazek.data.attributes.formats.large?.url ||
           Obrazek.data.attributes.url)}
