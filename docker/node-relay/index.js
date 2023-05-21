@@ -19,6 +19,7 @@ http
       return res.end();
     }
 
+    // rate limiting
     if (updates < allowed_updates_per_day) await webhook();
 
     updates++;
@@ -41,3 +42,8 @@ async function webhook() {
     }),
   });
 }
+
+// trigger webhook 5 minutes after deploy
+setTimeout(async () => {
+  await webhook();
+}, 5 * 60 * 1000);
