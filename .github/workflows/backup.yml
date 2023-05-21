@@ -1,0 +1,28 @@
+name: Backup
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - name: Setup job
+        uses: actions/checkout@v3
+
+      - name: Create backup file
+        run: |
+          sudo docker exec --workdir /app strapi yarn strapi export --no-encrypt --file backup
+          sudo docker cp strapi:/app/backup.tar.gz backup.tar.gz
+
+      - name: Upload file to Oracle
+        run: |
+          mv backup.tar.gz "$(date +"%m-%Y")".tar.gz
+          curl -X PUT --data-binary @"$(date +"%m-%Y")".tar.gz ${{ secrets.ORACLE_BUCKET }}/"$(date +"%m-%Y")".tar.gz
+
+      - name: Remove backup file
+        run: sudo rm "$(date +"%m-%Y")".tar.gz
