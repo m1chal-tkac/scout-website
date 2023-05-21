@@ -68,7 +68,8 @@ Pouze jeden záznam
 
 Přečtěte si prosím [Návod pro autory](https://github.com/Michal124/scout-website/blob/master/N%C3%A1vod%20pro%20autory.md#vytvo%C5%99en%C3%AD-novinky)
 
-**Nová data se načtou během přibližně 5 minut**
+**Nová data se načtou během přibližně 5 minut**<br />
+:warning: **Pokud byl překročen limit 4 úprav denně, načtou se další den!**
 <br />
 <br />
 
