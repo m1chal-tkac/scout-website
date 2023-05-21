@@ -31,23 +31,25 @@ const data = Astro.props.data;
 const oddil = Astro.props.oddilUrl;
 ---
 
-<Section>
-  <h1 class={h1_cards_section}>Naše {oddil ? "Družiny" : "Oddíly"}</h1>
-  <FlexWrapper>
-    {
-      data.data.map((x) => (
-        <Unit
-          Nazev={x.attributes.Nazev}
-          Typ={x.attributes.Typ}
-          Url={"/" + (oddil ? oddil + "/" : "") + x.attributes.Url}
-          Obrazek={x.attributes.Obrazek}
-        >
-          {x.attributes.druziny &&
-            x.attributes.druziny.data.map((y) => (
-              <UnitInfo text={y.attributes.Nazev} />
-            ))}
-        </Unit>
-      ))
-    }
-  </FlexWrapper>
-</Section>
+{
+  data.data.length > 0 && (
+    <Section>
+      <h1 class={h1_cards_section}>Naše {oddil ? "Družiny" : "Oddíly"}</h1>
+      <FlexWrapper>
+        {data.data.map((x) => (
+          <Unit
+            Nazev={x.attributes.Nazev}
+            Typ={x.attributes.Typ}
+            Url={"/" + (oddil ? oddil + "/" : "") + x.attributes.Url}
+            Obrazek={x.attributes.Obrazek}
+          >
+            {x.attributes.druziny &&
+              x.attributes.druziny.data.map((y) => (
+                <UnitInfo text={y.attributes.Nazev} />
+              ))}
+          </Unit>
+        ))}
+      </FlexWrapper>
+    </Section>
+  )
+}

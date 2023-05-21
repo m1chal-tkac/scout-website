@@ -28,22 +28,24 @@ const heading = Astro.props.heading;
 const hideButton = Astro.props.hideButton;
 ---
 
-<Section
-  button={hideButton ? undefined : "Všechny Kontakty"}
-  url={hideButton ? undefined : "/kontakty"}
->
-  <h1 class={h1_cards_section}>{heading ? heading : "Kontakty"}</h1>
-  <FlexWrapper>
-    {
-      data.map((x) => (
-        <Contact
-          Jmeno={x.vedouci.data.attributes.Jmeno}
-          Funkce={x.Funkce}
-          Telefon={x.vedouci.data.attributes.Telefon}
-          Email={x.vedouci.data.attributes.Email}
-          Obrazek={x.vedouci.data.attributes.Fotka}
-        />
-      ))
-    }
-  </FlexWrapper>
-</Section>
+{
+  data.length > 0 && (
+    <Section
+      button={hideButton ? undefined : "Všechny Kontakty"}
+      url={hideButton ? undefined : "/kontakty"}
+    >
+      <h1 class={h1_cards_section}>{heading ? heading : "Kontakty"}</h1>
+      <FlexWrapper>
+        {data.map((x) => (
+          <Contact
+            Jmeno={x.vedouci.data.attributes.Jmeno}
+            Funkce={x.Funkce}
+            Telefon={x.vedouci.data.attributes.Telefon}
+            Email={x.vedouci.data.attributes.Email}
+            Obrazek={x.vedouci.data.attributes.Fotka}
+          />
+        ))}
+      </FlexWrapper>
+    </Section>
+  )
+}

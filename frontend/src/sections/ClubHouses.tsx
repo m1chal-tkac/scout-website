@@ -44,6 +44,8 @@ export default function ClubHouse({ data }: ClubHouse) {
     }, 1000);
   }, []);
 
+  if (data.length === 0) return null;
+
   return (
     <Section>
       <h1 className={data.length > 1 ? h1_center : h1_cards_section}>

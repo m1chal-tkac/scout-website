@@ -38,6 +38,19 @@ export default function ContactsWithTwoSubmenus({
     Object.keys(data[Object.keys(data)[0]])[0]
   );
 
+  if (
+    Object.keys(data).reduce(
+      (acu, cur) =>
+        acu +
+        Object.keys(data[cur]).reduce(
+          (_acu, _cur) => _acu + data[cur][_cur].data.length,
+          0
+        ),
+      0
+    ) === 0
+  )
+    return null;
+
   return (
     <Section>
       <h1 className={h1_center}>Kontakty na rádce</h1>
