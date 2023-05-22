@@ -77,7 +77,7 @@
       }
     }
   }
-  oddily {
+  oddily(sort: "Nazev") {
     data {
       id
       attributes {

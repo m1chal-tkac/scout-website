@@ -27,7 +27,7 @@ const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
             }
           }
         }
-        oddily {
+        oddily(sort: "Nazev") {
           data {
             attributes {
               Nazev
