@@ -7,7 +7,7 @@ interface Unit {
 export default function Unit({ name, url }: Unit) {
   return (
     <li className="mb-2">
-      <a href={url}>{name}</a>
+      <a href={"/" + url}>{name}</a>
     </li>
   );
 }
