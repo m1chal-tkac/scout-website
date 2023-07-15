@@ -11,11 +11,11 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-graphql": "4.11.3",
-    "@strapi/plugin-i18n": "4.11.3",
-    "@strapi/plugin-users-permissions": "4.11.3",
-    "@strapi/provider-email-nodemailer": "^4.11.3",
-    "@strapi/strapi": "4.11.3",
+    "@strapi/plugin-graphql": "4.11.5",
+    "@strapi/plugin-i18n": "4.11.5",
+    "@strapi/plugin-users-permissions": "4.11.5",
+    "@strapi/provider-email-nodemailer": "^4.11.5",
+    "@strapi/strapi": "4.11.5",
     "better-sqlite3": "8.4.0",
     "pg": "^8.11.1"
   },
