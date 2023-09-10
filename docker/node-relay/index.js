@@ -6,7 +6,7 @@ let updates = 0;
 setInterval(async () => {
   updates = 0;
   if (updates > allowed_updates_per_day) {
-    await webhook();
+    webhook();
     updates++;
   }
 }, 24 * 3600 * 1000);
@@ -20,7 +20,7 @@ http
     }
 
     // rate limiting
-    if (updates < allowed_updates_per_day) await webhook();
+    if (updates < allowed_updates_per_day) webhook();
 
     updates++;
     res.writeHead(200, { "Content-Type": "text/html" });
@@ -29,21 +29,27 @@ http
   })
   .listen(8080);
 
-async function webhook() {
-  await fetch(process.env.GITHUB_REPO + "/dispatches", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/vnd.github+json",
-      Authorization: "Bearer " + process.env.GITHUB_TOKEN,
-    },
-    body: JSON.stringify({
-      event_type: "webhook",
-    }),
-  });
+let timeout;
+
+function webhook() {
+  if (timeout) clearTimeout(timeout);
+
+  timeout = setTimeout(async () => {
+    await fetch(process.env.GITHUB_REPO + "/dispatches", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github+json",
+        Authorization: "Bearer " + process.env.GITHUB_TOKEN,
+      },
+      body: JSON.stringify({
+        event_type: "webhook",
+      }),
+    });
+  }, 5 * 60 * 1000);
 }
 
 // trigger webhook 5 minutes after deploy
 setTimeout(async () => {
-  await webhook();
+  webhook();
 }, 5 * 60 * 1000);
