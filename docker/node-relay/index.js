@@ -26,7 +26,7 @@ http
       if (!timeout) updates++;
       else clearTimeout(timeout);
 
-      setTimeout(() => webhook(), 5 * 60 * 1000);
+      timeout = setTimeout(() => webhook(), 5 * 60 * 1000);
     }
 
     res.writeHead(200, { "Content-Type": "text/html" });
