@@ -1,20 +1,16 @@
-const glob = require("glob");
-const Critters = require("critters");
-const fs = require("fs");
+import { globSync } from "glob";
+import Critters from "critters";
+import fs from "fs";
 
 const critters = new Critters({
   path: "dist",
 });
 
-glob("/**/*.html", { root: "dist" }, async (err, files) => {
-  if (err) throw err;
+const files = globSync("/**/*.html", { root: "dist" });
 
-  await Promise.all(
-    files.forEach(async (filePath) => {
-      const inlined = await critters.process(
-        await fs.readFile(filePath, "utf8")
-      );
-      await fs.writeFile(filePath, inlined, "utf8");
-    })
+files.forEach(async (filePath) => {
+  const inlined = await critters.process(
+    fs.readFileSync(filePath, "utf8").toString()
   );
+  fs.writeFileSync(filePath, inlined, "utf8");
 });
