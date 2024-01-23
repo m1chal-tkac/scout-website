@@ -41,10 +41,890 @@ const topPadding = Astro.props.topPadding;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/global.css" />
-    <link rel="preload" href="/fonty/skaut-bold-webfont.woff" as="font" type="font/woff">
-    <link rel="preload" href="/fonty/TheMix_LT_700.woff" as="font" type="font/woff">
-    <link rel="preload" href="/fonty/TheMix_LT_400.woff" as="font" type="font/woff">
+    <style is:global>
+      a,
+      hr {
+        color: inherit;
+      }
+      progress,
+      sub,
+      sup {
+        vertical-align: baseline;
+      }
+      blockquote,
+      body,
+      dd,
+      dl,
+      fieldset,
+      figure,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      hr,
+      menu,
+      ol,
+      p,
+      pre,
+      ul {
+        margin: 0;
+      }
+      fieldset,
+      legend,
+      menu,
+      ol,
+      ul {
+        padding: 0;
+      }
+      .bg-gray-100,
+      .bg-gray-200,
+      .bg-gray-300,
+      .bg-primary-100,
+      .bg-primary-200,
+      .bg-white {
+        --tw-bg-opacity: 1;
+      }
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+        border: 0 solid #e5e7eb;
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+      }
+      ::after,
+      ::before {
+        --tw-content: "";
+      }
+      html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        font-family: themix, sans-serif;
+        font-feature-settings: normal;
+        font-variation-settings: normal;
+      }
+      body {
+        line-height: inherit;
+      }
+      hr {
+        height: 0;
+        border-top-width: 1px;
+      }
+      abbr:where([title]) {
+        -webkit-text-decoration: underline dotted;
+        text-decoration: underline dotted;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      a {
+        text-decoration: inherit;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      pre,
+      samp {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      table {
+        text-indent: 0;
+        border-color: inherit;
+        border-collapse: collapse;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+        margin: 0;
+        padding: 0;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      [type="button"],
+      [type="reset"],
+      [type="submit"],
+      button {
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none;
+      }
+      :-moz-focusring {
+        outline: auto;
+      }
+      :-moz-ui-invalid {
+        box-shadow: none;
+      }
+      ::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      ::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      summary {
+        display: list-item;
+      }
+      menu,
+      ol,
+      ul {
+        list-style: none;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input::-moz-placeholder,
+      textarea::-moz-placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      [role="button"],
+      button {
+        cursor: pointer;
+      }
+      :disabled {
+        cursor: default;
+      }
+      audio,
+      canvas,
+      embed,
+      iframe,
+      img,
+      object,
+      svg,
+      video {
+        display: block;
+        vertical-align: middle;
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      .hidden,
+      [hidden] {
+        display: none;
+      }
+      ::backdrop {
+        --tw-border-spacing-x: 0;
+        --tw-border-spacing-y: 0;
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .relative {
+        position: relative;
+      }
+      .sticky {
+        position: sticky;
+      }
+      .bottom-8 {
+        bottom: 2rem;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .left-1\/2 {
+        left: 50%;
+      }
+      .left-2 {
+        left: 0.5rem;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .top-1\/2 {
+        top: 50%;
+      }
+      .top-full {
+        top: 100%;
+      }
+      .z-40 {
+        z-index: 40;
+      }
+      .mx-4 {
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .my-4 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      .my-6 {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .-mt-4 {
+        margin-top: -1rem;
+      }
+      .mb-1 {
+        margin-bottom: 0.25rem;
+      }
+      .mb-12 {
+        margin-bottom: 3rem;
+      }
+      .mb-2 {
+        margin-bottom: 0.5rem;
+      }
+      .mb-24 {
+        margin-bottom: 6rem;
+      }
+      .mb-3 {
+        margin-bottom: 0.75rem;
+      }
+      .mb-4 {
+        margin-bottom: 1rem;
+      }
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+      .mb-8 {
+        margin-bottom: 2rem;
+      }
+      .mr-20 {
+        margin-right: 5rem;
+      }
+      .mr-4 {
+        margin-right: 1rem;
+      }
+      .mr-6 {
+        margin-right: 1.5rem;
+      }
+      .mt-2 {
+        margin-top: 0.5rem;
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+      .mt-6 {
+        margin-top: 1.5rem;
+      }
+      .mt-8 {
+        margin-top: 2rem;
+      }
+      .block {
+        display: block;
+      }
+      .flex {
+        display: flex;
+      }
+      .aspect-\[3\/2\] {
+        aspect-ratio: 3/2;
+      }
+      .aspect-\[5\/2\] {
+        aspect-ratio: 5/2;
+      }
+      .h-16 {
+        height: 4rem;
+      }
+      .h-20 {
+        height: 5rem;
+      }
+      .h-24 {
+        height: 6rem;
+      }
+      .h-28 {
+        height: 7rem;
+      }
+      .h-5 {
+        height: 1.25rem;
+      }
+      .h-8 {
+        height: 2rem;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .h-screen {
+        height: 100vh;
+      }
+      .max-h-40 {
+        max-height: 10rem;
+      }
+      .min-h-full {
+        min-height: 100%;
+      }
+      .min-h-\[20rem\] {
+        min-height: 20rem;
+      }
+      .w-16 {
+        width: 4rem;
+      }
+      .w-28 {
+        width: 7rem;
+      }
+      .w-5 {
+        width: 1.25rem;
+      }
+      .w-60 {
+        width: 15rem;
+      }
+      .w-8 {
+        width: 2rem;
+      }
+      .w-\[96rem\] {
+        width: 96rem;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .w-max {
+        width: -moz-max-content;
+        width: max-content;
+      }
+      .w-screen {
+        width: 100vw;
+      }
+      .min-w-0 {
+        min-width: 0;
+      }
+      .max-w-2xl {
+        max-width: 42rem;
+      }
+      .max-w-7xl {
+        max-width: 80rem;
+      }
+      .max-w-\[100vw\] {
+        max-width: 100vw;
+      }
+      .max-w-\[15rem\] {
+        max-width: 15rem;
+      }
+      .max-w-full {
+        max-width: 100%;
+      }
+      .max-w-lg {
+        max-width: 32rem;
+      }
+      .max-w-xl {
+        max-width: 36rem;
+      }
+      .max-w-xs {
+        max-width: 20rem;
+      }
+      .flex-1 {
+        flex: 1 1 0%;
+      }
+      .flex-\[0_1_15rem\] {
+        flex: 0 1 15rem;
+      }
+      .flex-\[2\] {
+        flex: 2;
+      }
+      .flex-\[3\] {
+        flex: 3;
+      }
+      .shrink-0 {
+        flex-shrink: 0;
+      }
+      .-translate-x-1\/2 {
+        --tw-translate-x: -50%;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+          rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
+          skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+          scaleY(var(--tw-scale-y));
+      }
+      .list-decimal {
+        list-style-type: decimal;
+      }
+      .list-disc {
+        list-style-type: disc;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .flex-col-reverse {
+        flex-direction: column-reverse;
+      }
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .content-start {
+        align-content: flex-start;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-around {
+        justify-content: space-around;
+      }
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .overflow-x-auto {
+        overflow-x: auto;
+      }
+      .overflow-y-auto {
+        overflow-y: auto;
+      }
+      .overflow-x-hidden {
+        overflow-x: hidden;
+      }
+      .whitespace-nowrap {
+        white-space: nowrap;
+      }
+      .rounded-full {
+        border-radius: 9999px;
+      }
+      .rounded-md {
+        border-radius: 0.375rem;
+      }
+      .border-0 {
+        border-width: 0;
+      }
+      .border-2 {
+        border-width: 2px;
+      }
+      .border-l-4 {
+        border-left-width: 4px;
+      }
+      .border-gray-300 {
+        --tw-border-opacity: 1;
+        border-color: rgb(209 213 219 / var(--tw-border-opacity));
+      }
+      .border-primary-100 {
+        --tw-border-opacity: 1;
+        border-color: rgb(57 121 181 / var(--tw-border-opacity));
+      }
+      .border-white {
+        --tw-border-opacity: 1;
+        border-color: rgb(255 255 255 / var(--tw-border-opacity));
+      }
+      .bg-gray-100 {
+        background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+      }
+      .bg-gray-200 {
+        background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+      }
+      .bg-gray-300 {
+        background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+      }
+      .bg-primary-100 {
+        background-color: rgb(57 121 181 / var(--tw-bg-opacity));
+      }
+      .bg-primary-200 {
+        background-color: rgb(37 92 158 / var(--tw-bg-opacity));
+      }
+      .bg-white {
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+      }
+      .object-contain {
+        -o-object-fit: contain;
+        object-fit: contain;
+      }
+      .object-cover {
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+      .px-10 {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+      .px-2 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .px-3 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .py-1 {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+      }
+      .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .py-4 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .pb-12 {
+        padding-bottom: 3rem;
+      }
+      .pb-4 {
+        padding-bottom: 1rem;
+      }
+      .pl-6 {
+        padding-left: 1.5rem;
+      }
+      .pt-12 {
+        padding-top: 3rem;
+      }
+      .pt-16 {
+        padding-top: 4rem;
+      }
+      .pt-24 {
+        padding-top: 6rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .font-skautbold {
+        font-family: skautbold, sans-serif;
+      }
+      .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .text-3xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+      }
+      .text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+      .text-7xl {
+        font-size: 4.5rem;
+        line-height: 1;
+      }
+      .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+      .text-lg,
+      .text-xl {
+        line-height: 1.75rem;
+      }
+      .text-lg {
+        font-size: 1.125rem;
+      }
+      .text-xl {
+        font-size: 1.25rem;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .not-italic {
+        font-style: normal;
+      }
+      .leading-8 {
+        line-height: 2rem;
+      }
+      .text-primary-100 {
+        --tw-text-opacity: 1;
+        color: rgb(57 121 181 / var(--tw-text-opacity));
+      }
+      .text-primary-300 {
+        --tw-text-opacity: 1;
+        color: rgb(41 72 133 / var(--tw-text-opacity));
+      }
+      .text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+      }
+      .underline {
+        text-decoration-line: underline;
+      }
+      .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+      @font-face {
+        font-family: themix;
+        font-weight: 400;
+        font-style: "normal";
+        font-display: "swap";
+        src: url("/fonty/TheMix_LT_400.woff");
+      }
+      @font-face {
+        font-family: themix;
+        font-weight: 700;
+        font-style: "normal";
+        font-display: "swap";
+        src: url("/fonty/TheMix_LT_700.woff");
+      }
+      @font-face {
+        font-family: skautbold;
+        font-weight: 400;
+        font-style: "normal";
+        font-display: "swap";
+        src: url("/fonty/skaut-bold-webfont.woff");
+      }
+      .last\:mb-0:last-child {
+        margin-bottom: 0;
+      }
+      .last\:mr-0:last-child {
+        margin-right: 0;
+      }
+      @media (min-width: 640px) {
+        .sm\:block {
+          display: block;
+        }
+        .sm\:aspect-\[5\/2\] {
+          aspect-ratio: 5/2;
+        }
+        .sm\:h-16 {
+          height: 4rem;
+        }
+        .sm\:w-16 {
+          width: 4rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .md\:mb-0 {
+          margin-bottom: 0;
+        }
+        .md\:aspect-\[5\/2\] {
+          aspect-ratio: 5/2;
+        }
+        .md\:flex-row {
+          flex-direction: row;
+        }
+        .md\:px-10 {
+          padding-left: 2.5rem;
+          padding-right: 2.5rem;
+        }
+        .md\:text-right {
+          text-align: right;
+        }
+        .md\:text-5xl {
+          font-size: 3rem;
+          line-height: 1;
+        }
+      }
+      @media (min-width: 1024px) {
+        .lg\:static {
+          position: static;
+        }
+        .lg\:absolute {
+          position: absolute;
+        }
+        .lg\:my-8 {
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+        }
+        .lg\:mb-0 {
+          margin-bottom: 0;
+        }
+        .lg\:ml-auto {
+          margin-left: auto;
+        }
+        .lg\:mr-8 {
+          margin-right: 2rem;
+        }
+        .lg\:mt-0 {
+          margin-top: 0;
+        }
+        .lg\:block {
+          display: block;
+        }
+        .lg\:flex {
+          display: flex;
+        }
+        .lg\:hidden {
+          display: none;
+        }
+        .lg\:aspect-\[3\/2\] {
+          aspect-ratio: 3/2;
+        }
+        .lg\:max-h-96 {
+          max-height: 24rem;
+        }
+        .lg\:max-w-lg {
+          max-width: 32rem;
+        }
+        .lg\:flex-row {
+          flex-direction: row;
+        }
+        .lg\:flex-col {
+          flex-direction: column;
+        }
+        .lg\:justify-end {
+          justify-content: flex-end;
+        }
+        .lg\:justify-between {
+          justify-content: space-between;
+        }
+        .lg\:px-0 {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .lg\:px-10 {
+          padding-left: 2.5rem;
+          padding-right: 2.5rem;
+        }
+        .lg\:pb-0 {
+          padding-bottom: 0;
+        }
+        .lg\:pb-8 {
+          padding-bottom: 2rem;
+        }
+        .lg\:text-6xl {
+          font-size: 3.75rem;
+          line-height: 1;
+        }
+      }
+    </style>
+    <link
+      rel="preload"
+      href="/fonty/skaut-bold-webfont.woff"
+      as="font"
+      type="font/woff"
+    />
+    <link
+      rel="preload"
+      href="/fonty/TheMix_LT_700.woff"
+      as="font"
+      type="font/woff"
+    />
+    <link
+      rel="preload"
+      href="/fonty/TheMix_LT_400.woff"
+      as="font"
+      type="font/woff"
+    />
     <title>{title}</title>
     <slot name="head" />
   </head>
