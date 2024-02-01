@@ -56,7 +56,7 @@ const {
 } = Astro.props;
 const oddil = Astro.params.oddil;
 
-const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.data.length} družinky. Vedoucí střediska je ${Kontakty[0].vedouci.data.attributes.Jmeno}.`;
+const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.data.length} družinky. Vedoucí oddílu je ${Kontakty[0].vedouci.data.attributes.Jmeno}.`;
 ---
 
 <Layout title={`Skautský oddíl ${Nazev}`}>
@@ -67,13 +67,13 @@ const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.data.length
     content={`Skautský oddíl ${Nazev} | ${Stredisko}`}
     slot="head"
   />
-  <meta property="og:type" content="website" slot="head">
+  <meta property="og:type" content="website" slot="head" />
   <meta
     property="og:url"
     content={import.meta.env.PUBLIC_URL + `/${oddil}`}
     slot="head"
   />
-  <meta property="og:description" content={description} slot="head">
+  <meta property="og:description" content={description} slot="head" />
   <meta
     property="og:image"
     content={import.meta.env.PUBLIC_STRAPI +
