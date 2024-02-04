@@ -667,10 +667,6 @@ video {
   aspect-ratio: 3/2;
 }
 
-.aspect-\[5\/2\] {
-  aspect-ratio: 5/2;
-}
-
 .h-16 {
   height: 4rem;
 }
@@ -709,10 +705,6 @@ video {
 
 .min-h-full {
   min-height: 100%;
-}
-
-.min-h-\[20rem\] {
-  min-height: 20rem;
 }
 
 .w-16 {
@@ -1120,6 +1112,10 @@ video {
   src: url("/fonty/skaut-bold-webfont.woff");
 }
 
+.first\:mt-0:first-child {
+  margin-top: 0px;
+}
+
 .last\:mb-0:last-child {
   margin-bottom: 0px;
 }
@@ -1149,10 +1145,6 @@ video {
 @media (min-width: 768px) {
   .md\:mb-0 {
     margin-bottom: 0px;
-  }
-
-  .md\:aspect-\[5\/2\] {
-    aspect-ratio: 5/2;
   }
 
   .md\:flex-row {
