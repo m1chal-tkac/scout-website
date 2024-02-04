@@ -58,7 +58,6 @@ services:
       dockerfile: "./node-relay/Dockerfile"
     restart: unless-stopped
     environment:
-      NODE_RELAY_TOKEN: ${NODE_RELAY_TOKEN}
       GITHUB_REPO: ${GITHUB_REPO}
       GITHUB_TOKEN: ${GITHUB_TOKEN}
     networks:

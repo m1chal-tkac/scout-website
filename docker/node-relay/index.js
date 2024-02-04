@@ -15,12 +15,6 @@ let timeout;
 
 http
   .createServer(async function (req, res) {
-    if (req.headers.authorization !== process.env.NODE_RELAY_TOKEN) {
-      res.writeHead(403, { "Content-Type": "text/html" });
-      res.write("Wrong authorization token!");
-      return res.end();
-    }
-
     // rate limiting
     if (updates < allowed_updates_per_day) {
       if (!timeout) updates++;
