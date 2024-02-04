@@ -31,6 +31,10 @@ http
   .listen(8080);
 
 function webhook() {
+  const postData = JSON.stringify({
+    event_type: "webhook",
+  });
+
   const options = {
     hostname: "api.github.com",
     port: 443,
@@ -46,7 +50,7 @@ function webhook() {
     },
   };
 
-  var req = https.request(options, () => {});
+  const req = https.request(options, () => {});
 
   req.on("error", (e) => {
     console.error(e);
