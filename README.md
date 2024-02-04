@@ -47,7 +47,6 @@ SSL_CERTIFICATE=tajne
 SSL_CERTIFICATE_KEY=tajne
 
 # Github
-NODE_RELAY_TOKEN=tajne
 GITHUB_REPO=https://api.github.com/repos/{owner}/{repo}
 GITHUB_TOKEN=tajne
 ```
