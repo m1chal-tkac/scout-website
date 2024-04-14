@@ -37,9 +37,9 @@
       "type": "richtext",
       "required": true
     },
-    "oddil": {
+    "oddily": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::oddil.oddil",
       "inversedBy": "novinky"
     }

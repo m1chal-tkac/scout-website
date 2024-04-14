@@ -16,9 +16,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "Nazev": {
       "type": "string",
@@ -45,9 +43,9 @@
     },
     "novinky": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::novinka.novinka",
-      "mappedBy": "oddil"
+      "mappedBy": "oddily"
     },
     "druziny": {
       "type": "relation",
@@ -56,9 +54,7 @@
       "mappedBy": "oddil"
     },
     "SocialMediaObrazek": {
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
       "required": true

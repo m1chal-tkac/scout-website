@@ -28,7 +28,7 @@ const novinkyResponse = await fetch(
     body: JSON.stringify({
       query: `
       {
-        novinky(filters: { oddil: { id: { eq: null } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
+        novinky(filters: { oddily: { id: { eq: null } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
             attributes {
               Nazev
@@ -47,7 +47,7 @@ const novinkyResponse = await fetch(
         }
         ${data.oddily.data.map(
           (x) => `
-        _${x.id}: novinky(filters: { oddil: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
+        _${x.id}: novinky(filters: { oddily: { id: { eq: ${x.id} } } }, pagination: { limit: 3 }, sort: "publishedAt:desc") {
           data {
             attributes {
               Nazev
