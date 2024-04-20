@@ -4,7 +4,7 @@ import SwitchMenuButton, {
   SwitchMenuButtonWrapper,
 } from "../components/SwitchMenu/Button";
 import { h1_cards_section, h1_center } from "../components/typography";
-import { StrapiImages } from "../customTypes";
+import { type StrapiImages } from "../customTypes";
 import Map from "../components/Map";
 
 interface ClubHouse {

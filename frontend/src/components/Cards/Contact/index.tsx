@@ -1,4 +1,4 @@
-import { StrapiImage } from "../../../customTypes";
+import { type StrapiImage } from "../../../customTypes";
 import { h5 } from "../../typography";
 
 interface Contact {

@@ -1,5 +1,5 @@
 ---
-import { StrapiImage } from '../customTypes';
+import { type StrapiImage } from "../customTypes";
 
 export interface Props {
   image: StrapiImage;
@@ -14,7 +14,9 @@ const { image, className } = Astro.props;
     Object.keys(image.data.attributes.formats).map((x) => (
       <source
         media={`(max-width:${image.data.attributes.formats[x].width}px)`}
-        srcset={import.meta.env.PUBLIC_STRAPI + image.data.attributes.formats[x].url}
+        srcset={
+          import.meta.env.PUBLIC_STRAPI + image.data.attributes.formats[x].url
+        }
       />
     ))
   }

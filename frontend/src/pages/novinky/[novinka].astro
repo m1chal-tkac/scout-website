@@ -1,6 +1,6 @@
 ---
 import { h1_center } from "../../components/typography";
-import { StrapiImage } from "../../customTypes";
+import { type StrapiImage } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
 import GqlQuery from "../../graphql/novinky/[novinka].gql?raw";
 import BlocksRendererClient from "../../components/BlocksRendererClient";
@@ -97,7 +97,7 @@ const novinka = Astro.params.novinka;
         (Obrazek.data.attributes.formats.large?.url ||
           Obrazek.data.attributes.url)}
       alt={Nazev}
-      class="object-cover max-w-2xl w-full aspect-[3/2] mb-8"
+      class="object-cover max-w-2xl w-full aspect-[3/2] mb-10"
     />
     <div class="w-full max-w-2xl mx-auto px-10">
       <BlocksRendererClient Text={Text} />

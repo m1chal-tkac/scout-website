@@ -4,7 +4,7 @@ import SwitchMenuButton, {
   SwitchMenuButtonWrapper,
 } from "../components/SwitchMenu/Button";
 import { h1_center } from "../components/typography";
-import { StrapiImage, StrapiImages } from "../customTypes";
+import { type StrapiImage } from "../customTypes";
 import FlexWrapper from "../components/Cards/FlexWrapper";
 import Contact from "../components/Cards/Contact";
 

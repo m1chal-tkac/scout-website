@@ -27,15 +27,15 @@ export default function BlockRendererClient({
           }
         },
         paragraph: ({ children }) => (
-          <p className="mb-4 leading-8 whitespace-pre-wrap break-words">
+          <p className="mb-2 leading-8 whitespace-pre-wrap break-words">
             {children}
           </p>
         ),
         list: ({ format, children }) =>
           format === "ordered" ? (
-            <ol className="-mt-4 mb-4 list-decimal pl-6">{children}</ol>
+            <ol className="-mt-2 mb-4 list-decimal pl-6">{children}</ol>
           ) : (
-            <ul className="-mt-4 mb-4 list-disc pl-6">{children}</ul>
+            <ul className="-mt-2 mb-4 list-disc pl-6">{children}</ul>
           ),
         "list-item": ({ children }) => (
           <li>
@@ -53,11 +53,7 @@ export default function BlockRendererClient({
           </a>
         ),
         image: ({ image }) => (
-          <img
-            alt={image.alternativeText}
-            src={import.meta.env.PUBLIC_STRAPI + image.url}
-            className="my-6"
-          />
+          <img alt={image.alternativeText} src={image.url} className="my-6" />
         ),
       }}
     />

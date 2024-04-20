@@ -3,7 +3,7 @@ import Section from "../components/Section";
 import SwitchMenuButton, {
   SwitchMenuButtonWrapper,
 } from "../components/SwitchMenu/Button";
-import { StrapiImage } from "../customTypes";
+import { type StrapiImage } from "../customTypes";
 import { h1_center } from "../components/typography";
 import FlexWrapper from "../components/Cards/FlexWrapper";
 import ArticlePreview from "../components/Cards/Article";

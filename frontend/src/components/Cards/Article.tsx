@@ -1,4 +1,4 @@
-import { StrapiImage } from "../../customTypes";
+import { type StrapiImage } from "../../customTypes";
 import { h1_center } from "../typography";
 
 interface Article {
