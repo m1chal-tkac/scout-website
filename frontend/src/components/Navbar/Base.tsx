@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { type ReactNode, useState } from "react";
 import Logo from "./Logo";
 import Hamburger from "./Hamburgers";
 import PrimaryMenu, { PrimaryMenuLink } from "./PrimaryMenu";

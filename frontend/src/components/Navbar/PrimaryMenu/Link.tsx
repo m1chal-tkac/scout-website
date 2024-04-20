@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 interface Link {
   action: string | { setMenu: (name: string | null) => void; menu?: string };

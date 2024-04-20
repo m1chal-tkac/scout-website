@@ -1,9 +1,9 @@
 ---
-import { marked } from "marked";
-import { h1_center, h2, h3, h4, h5 } from "../../components/typography";
+import { h1_center } from "../../components/typography";
 import { StrapiImage } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
 import GqlQuery from "../../graphql/novinky/[novinka].gql?raw";
+import BlocksRendererClient from "../../components/BlocksRendererClient";
 
 export async function getStaticPaths() {
   const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
@@ -43,58 +43,6 @@ export interface Props {
 
 const { Nazev, Text, publishedAt, Obrazek, Stredisko, Popis } = Astro.props;
 
-const renderer = {
-  heading(text, level) {
-    return `<h${level} class="${
-      level === 1 ? h2 : level === 2 ? h3 : level === 3 ? h4 : h5
-    }">
-              ${text}
-            </h${level}>`;
-  },
-  paragraph(text) {
-    return `<p class="mb-4 leading-8">
-              ${text}
-            </p>`;
-  },
-  list(body, ordered, start) {
-    return ordered
-      ? `<ol start=${start} class="-mt-4 mb-4 list-decimal pl-6">
-          ${body}
-        </ol>`
-      : `<ul class="-mt-4 mb-4 list-disc pl-6">
-          ${body}
-        </ul>`;
-  },
-  listitem(text) {
-    return `<li>
-              <span class="relative left-2">
-                ${text}
-              </span>
-            </li>`;
-  },
-  blockquote(quote) {
-    return `<div class="bg-gray-200 rounded-md px-3 py-4 mb-4 border-l-4 border-gray-300">
-              ${/<p[^>]*>(.*)<\/p>/i.exec(quote.replaceAll("\n", ""))[1].trim()}
-            </div>`;
-  },
-  link(href, title, text) {
-    return `<a href="${href}" target="_blank" class="text-primary-100 underline">
-              ${text}
-            </a>`;
-  },
-  image(href, title, text) {
-    return `<img
-              alt="${text}"
-              src="${import.meta.env.PUBLIC_STRAPI + href}"
-              class="my-6"
-            />`;
-  },
-};
-
-marked.use({ renderer });
-
-const content = marked.parse(Text);
-
 const date = new Date(publishedAt);
 
 const novinka = Astro.params.novinka;
@@ -117,7 +65,7 @@ const novinka = Astro.params.novinka;
       "datePublished": "${publishedAt}",
       "about": "${Popis}"
     }`}
-  ></script>
+  />
 
   <meta name="description" content={Popis} slot="head" />
 
@@ -151,6 +99,8 @@ const novinka = Astro.params.novinka;
       alt={Nazev}
       class="object-cover max-w-2xl w-full aspect-[3/2] mb-8"
     />
-    <div class="w-full max-w-2xl mx-auto px-10" set:html={content} />
+    <div class="w-full max-w-2xl mx-auto px-10">
+      <BlocksRendererClient Text={Text} />
+    </div>
   </article>
 </Layout>

@@ -16,7 +16,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Nazev": {
       "type": "string",
@@ -54,7 +56,9 @@
       "mappedBy": "oddil"
     },
     "SocialMediaObrazek": {
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images"
+      ],
       "type": "media",
       "multiple": false,
       "required": true

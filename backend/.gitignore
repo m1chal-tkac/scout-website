@@ -7,6 +7,7 @@ exports
 dist
 build
 .strapi-updater.json
+.strapi
 
 public/uploads/*
 !public/uploads/.gitkeep
