@@ -14,8 +14,9 @@ export function CalendarDate({ day, events }: CalendarDate) {
         {day}
       </p>
       <div className="flex space-x-1 mt-1">
-        {(events || []).map((color) => (
+        {(events || []).map((color, i) => (
           <div
+            key={i}
             className={`${
               color === "Zelena"
                 ? "bg-calendar-green"

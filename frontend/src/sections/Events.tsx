@@ -37,22 +37,25 @@ export default function Events({ oddily }: Events) {
       const jcalData = ICAL.parse(_data);
 
       setData(
-        new ICAL.Component(jcalData).getAllSubcomponents("vevent").map((x) => {
-          const event = new ICAL.Event(x);
+        new ICAL.Component(jcalData)
+          .getAllSubcomponents("vevent")
+          .map((x) => {
+            const event = new ICAL.Event(x);
 
-          const color = oddily.data.find((oddil) =>
-            event.summary
-              .toLowerCase()
-              .includes(oddil.attributes.Nazev.toLowerCase())
-          )?.attributes.CalendarColor;
+            const color = oddily.data.find((oddil) =>
+              event.summary
+                .toLowerCase()
+                .includes(oddil.attributes.Nazev.toLowerCase())
+            )?.attributes.CalendarColor;
 
-          return {
-            summary: event.summary,
-            start: event.startDate.toJSDate(),
-            end: event.endDate.toJSDate(),
-            color,
-          };
-        })
+            return {
+              summary: event.summary,
+              start: event.startDate.toJSDate(),
+              end: new Date(event.endDate.toJSDate() - 1),
+              color,
+            };
+          })
+          .sort((a, b) => a.start.getTime() - b.start.getTime())
       );
     })();
   }, []);
@@ -100,8 +103,10 @@ export default function Events({ oddily }: Events) {
             (() => {
               const events = data.filter(
                 (x) =>
-                  x.start >= new Date(selected.year, selected.month, 1) ||
-                  x.end >= new Date(selected.year, selected.month, 1)
+                  (x.start >= new Date(selected.year, selected.month, 1) &&
+                    x.start < new Date(selected.year, selected.month + 1, 1)) ||
+                  (x.end >= new Date(selected.year, selected.month, 1) &&
+                    x.end < new Date(selected.year, selected.month + 1, 1))
               );
 
               if (events.length === 0) {

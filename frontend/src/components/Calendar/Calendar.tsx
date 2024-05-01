@@ -56,7 +56,7 @@ const getCalendarData = (
         .reduce((acc, x) => {
           const color = x.color || "Primary";
 
-          if (acc.find((y) => y === x.color)) {
+          if (acc.find((y) => y === color)) {
             return acc;
           }
 
