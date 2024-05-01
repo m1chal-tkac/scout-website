@@ -29,7 +29,9 @@ export default function Events({ oddily }: Events) {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/calendar");
+      const response = await fetch(
+        import.meta.env.PUBLIC_STRAPI + "/api/calendar"
+      );
       const _data = await response.text();
 
       const jcalData = ICAL.parse(_data);

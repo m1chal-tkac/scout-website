@@ -22,10 +22,21 @@ http
     const file = fs.readFileSync("Kalendar.ics");
     const gzip = zlib.gzipSync(file);
 
+    if (req.method === "OPTIONS") {
+      res.writeHead(200, {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+      });
+      res.end();
+      return;
+    }
+
     res.writeHead(200, {
       "Content-Type": "text/calendar; charset=utf-8",
       "Content-Encoding": "gzip",
       "Content-Length": gzip.length,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, OPTIONS",
     });
 
     const chunkLimit = 16 * 1024;
