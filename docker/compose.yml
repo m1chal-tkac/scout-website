@@ -82,6 +82,16 @@ services:
     depends_on:
       - strapi
 
+  ical:
+    container_name: ical
+    build:
+      context: .
+      dockerfile: "./ical/Dockerfile"
+    restart: unless-stopped
+    networks:
+      strapi:
+        ipv4_address: 10.5.0.14
+
 volumes:
   strapi-public:
   postgres-data:

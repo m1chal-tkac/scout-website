@@ -16,9 +16,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "Nazev": {
       "type": "string",
@@ -56,11 +54,14 @@
       "mappedBy": "oddil"
     },
     "SocialMediaObrazek": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "CalendarColor": {
+      "type": "enumeration",
+      "enum": ["Zelena", "Cervena", "Hneda", "Zluta", "Fialova"],
       "required": true
     }
   }

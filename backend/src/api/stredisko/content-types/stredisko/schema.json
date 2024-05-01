@@ -41,10 +41,10 @@
     "CisloUctu": {
       "type": "string",
       "required": true,
-      "regex": "^\\d{10}\\/\\d{4}$"
+      "regex": "^(\\d{6}-)?\\d{10}\\/\\d{4}$"
     },
     "Email": {
-      "type": "string",
+      "type": "email",
       "required": true
     },
     "SocialniSite": {

@@ -9,6 +9,8 @@ build
 .strapi-updater.json
 .strapi
 
+data.db
+
 public/uploads/*
 !public/uploads/.gitkeep
 

@@ -930,6 +930,10 @@ export interface ApiOddilOddil extends Schema.CollectionType {
       'api::druzina.druzina'
     >;
     SocialMediaObrazek: Attribute.Media & Attribute.Required;
+    CalendarColor: Attribute.Enumeration<
+      ['Zelena', 'Cervena', 'Hneda', 'Zluta', 'Fialova']
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -966,7 +970,7 @@ export interface ApiStrediskoStredisko extends Schema.SingleType {
     CisloStrediska: Attribute.String & Attribute.Required;
     Ico: Attribute.String & Attribute.Required;
     CisloUctu: Attribute.String & Attribute.Required;
-    Email: Attribute.String & Attribute.Required;
+    Email: Attribute.Email & Attribute.Required;
     SocialniSite: Attribute.Component<'default.socialni-sit', true>;
     Fotky: Attribute.Component<'default.album', true>;
     createdAt: Attribute.DateTime;
@@ -1001,6 +1005,7 @@ export interface ApiUvodniStrankaUvodniStranka extends Schema.SingleType {
     Obrazek: Attribute.Media & Attribute.Required;
     Slogan: Attribute.String & Attribute.Required;
     Popis: Attribute.RichText & Attribute.Required;
+    iCalUrl: Attribute.String;
     Kontakty: Attribute.Component<'default.kontakt', true> & Attribute.Required;
     Klubovny: Attribute.Component<'default.klubovna', true> &
       Attribute.Required;

@@ -7,8 +7,5 @@ module.exports = ({ env }) => ({
   },
   webhooks: {
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
-    defaultHeaders: {
-      Authorization: env("NODE_RELAY_TOKEN"),
-    },
   },
 });

@@ -9,6 +9,13 @@ module.exports = {
           200: "#255C9E",
           300: "#294885",
         },
+        calendar: {
+          green: "#009A4E",
+          red: "#F26854",
+          brown: "#9A7E5A",
+          yellow: "#EC9B40",
+          purple: "#A27996",
+        },
       },
       fontFamily: {
         sans: "themix, sans-serif",

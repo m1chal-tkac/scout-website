@@ -28,6 +28,10 @@
       "type": "richtext",
       "required": true
     },
+    "iCalUrl": {
+      "type": "string",
+      "required": false
+    },
     "Kontakty": {
       "type": "component",
       "repeatable": true,

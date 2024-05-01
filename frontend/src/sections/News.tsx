@@ -81,7 +81,7 @@ export default function News({ data, Big }: NewsWithSwitchMenu) {
             <FlexWrapper>
               {data[x].data.map((y, j) => (
                 <ArticlePreview
-                  key={i}
+                  key={j}
                   Nazev={y.attributes.Nazev}
                   Url={y.attributes.Url}
                   Obrazek={y.attributes.Obrazek}

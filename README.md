@@ -102,6 +102,10 @@ cd frontend && yarn build
 
 # Development
 
+```
+node prepare-dev.js
+```
+
 ## Backend
 
 ```

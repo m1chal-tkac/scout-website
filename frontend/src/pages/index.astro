@@ -2,6 +2,7 @@
 import MarkdownDescription from "../components/MarkdownDescription.astro";
 import StrapiPicture from "../components/StrapiPicture.astro";
 import Layout from "../layouts/Layout.astro";
+import Events from "../sections/Events";
 import ClubHouse from "../sections/ClubHouses";
 import Contacts from "../sections/Contacts.astro";
 import News from "../sections/News";
@@ -131,6 +132,7 @@ const description = `Jsme skautské středisko ${
   </div>
   <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
   <Units data={data.oddily} />
+  <Events client:idle oddily={data.oddily} />
   <News client:idle data={novinky} />
   <Contacts data={data.uvodniStranka.data.attributes.Kontakty} />
   <ClubHouse client:idle data={data.uvodniStranka.data.attributes.Klubovny} />

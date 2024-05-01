@@ -11,6 +11,7 @@
             }
           }
         }
+
         Slogan
         Popis
         Kontakty {
@@ -93,6 +94,7 @@
         Nazev
         Url
         Typ
+        CalendarColor
         druziny {
           data {
             attributes {

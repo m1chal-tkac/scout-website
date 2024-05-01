@@ -9,6 +9,9 @@ const site = loadEnv("", process.cwd(), "PUBLIC_").PUBLIC_URL;
 
 export default defineConfig({
   site,
+  server: {
+    port: 3000,
+  },
   integrations: [
     tailwind({ config: { applyBaseStyles: false } }),
     sitemap({
