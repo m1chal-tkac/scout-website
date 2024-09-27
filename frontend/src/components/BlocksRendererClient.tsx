@@ -48,7 +48,7 @@ export default function BlockRendererClient({
           </div>
         ),
         link: ({ children, url }) => (
-          <a href={url} target="_blank" className="text-primary-100 underline">
+          <a href={url} target="_blank" className="text-primary-200 underline">
             {children}
           </a>
         ),

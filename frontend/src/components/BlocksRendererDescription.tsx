@@ -61,7 +61,7 @@ export default function BlockRendererDescription({
               <a
                 href={url}
                 target="_blank"
-                className="text-primary-100 underline"
+                className="text-primary-200 underline"
               >
                 {children}
               </a>
