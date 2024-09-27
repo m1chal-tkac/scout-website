@@ -1,0 +1,26 @@
+---
+import { h1_center } from "../components/typography";
+import Layout from "../layouts/Layout.astro";
+import GqlQuery from "../graphql/rozpis-schuzek.gql?raw";
+import BlocksRendererClient from "../components/BlocksRendererClient";
+
+const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: GqlQuery,
+  }),
+});
+
+const Json = await response.json();
+const data = Json.data;
+---
+
+<Layout title="Rozpis schůzek" topPadding="m">
+  <article class="max-w-2xl w-full mx-auto flex items-center flex-col pb-12">
+    <h1 class={h1_center + " px-10"}>Rozpis schůzek</h1>
+    <div class="mt-8 w-full max-w-2xl mx-auto px-10">
+      <BlocksRendererClient Text={data.rozpisSchuzek.data.attributes.Text} />
+    </div>
+  </article>
+</Layout>

@@ -1,5 +1,4 @@
 ---
-import MarkdownDescription from "../components/MarkdownDescription.astro";
 import StrapiPicture from "../components/StrapiPicture.astro";
 import Layout from "../layouts/Layout.astro";
 import Events from "../sections/Events";
@@ -9,6 +8,7 @@ import News from "../sections/News";
 import Sponsors from "../sections/Sponsors.astro";
 import Units from "../sections/Units.astro";
 import GqlQuery from "../graphql/index.gql?raw";
+import BlocksRendererDescription from "../components/BlocksRendererDescription.tsx";
 
 const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
   method: "POST",
@@ -96,6 +96,13 @@ const description = `Jsme skautské středisko ${
 ---
 
 <Layout topPadding="no">
+  <link
+    rel="preload"
+    href={import.meta.env.PUBLIC_STRAPI +
+      data.uvodniStranka.data.attributes.Obrazek.data.attributes.url}
+    slot="head"
+  />
+
   <meta name="description" content={description} slot="head" />
 
   <meta
@@ -130,10 +137,10 @@ const description = `Jsme skautské středisko ${
       <p class="font-bold text-white text-lg">Posuňtě dolů</p>
     </div>
   </div>
-  <MarkdownDescription markdown={data.uvodniStranka.data.attributes.Popis} />
-  <Units data={data.oddily} />
-  <Events client:idle oddily={data.oddily} />
+  <BlocksRendererDescription Text={data.uvodniStranka.data.attributes.Popis} />
   <News client:idle data={novinky} />
+  <Events client:idle oddily={data.oddily} />
+  <Units data={data.oddily} />
   <Contacts data={data.uvodniStranka.data.attributes.Kontakty} />
   <ClubHouse client:idle data={data.uvodniStranka.data.attributes.Klubovny} />
   <Sponsors data={data.uvodniStranka.data.attributes.Sponzori} />

@@ -32,7 +32,7 @@
       "required": true
     },
     "Popis": {
-      "type": "richtext",
+      "type": "blocks",
       "required": true
     },
     "Kontakty": {

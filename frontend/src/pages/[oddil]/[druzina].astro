@@ -1,8 +1,9 @@
 ---
-import MarkdownDescription from "../../components/MarkdownDescription.astro";
 import Layout from "../../layouts/Layout.astro";
 import Contacts from "../../sections/Contacts.astro";
 import GqlQuery from "../../graphql/[oddil]/[druzina].gql?raw";
+import BlockRendererDescription from "../../components/BlocksRendererDescription";
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
 export async function getStaticPaths() {
   const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
@@ -31,9 +32,9 @@ export async function getStaticPaths() {
   });
 }
 
-export interface Props {
+interface Props {
   Nazev: string;
-  Popis: string;
+  Popis: BlocksContent;
   Kontakty: any;
 }
 
@@ -41,6 +42,6 @@ const { Nazev, Popis, Kontakty } = Astro.props;
 ---
 
 <Layout title={`Skautská družina ${Nazev}`}>
-  <MarkdownDescription markdown={Popis} />
+  <BlockRendererDescription Text={Popis} hideButton />
   <Contacts data={Kontakty} />
 </Layout>

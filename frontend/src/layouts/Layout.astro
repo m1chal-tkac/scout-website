@@ -35,7 +35,7 @@ const title = Astro.props.title
 const topPadding = Astro.props.topPadding;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
@@ -63,7 +63,7 @@ const topPadding = Astro.props.topPadding;
     <title>{title}</title>
     <slot name="head" />
   </head>
-  <body class="h-screen flex flex-col">
+  <body class="h-screen supports-[height:100svh]:h-[100svh] flex flex-col">
     <Navbar />
     <div
       class="w-full flex-1 flex flex-col overflow-y-auto bg-gray-100 overflow-x-hidden"

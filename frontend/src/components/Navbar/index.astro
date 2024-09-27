@@ -24,22 +24,6 @@ const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
                 }
             }
         }
-        oddily(sort: "Nazev") {
-            data {
-                attributes {
-                    Nazev
-                    Url
-                    druziny {
-                        data {
-                            attributes {
-                                Nazev
-                                Url
-                            }
-                        }
-                    }
-                }
-            }
-        }
       }
       `,
   }),
@@ -77,27 +61,6 @@ const data = Json.data;
       </a>
     </li>
   </SecondaryMenu>
-  <PrimaryMenuChildrenWrapper slot="organizace">
-    {
-      data.oddily.data.map((x, i) => (
-        <PrimaryMenuMenuLink
-          name={x.attributes.Nazev}
-          href={"/" + x.attributes.Url}
-          parent
-          key={i}
-        >
-          {x.attributes.druziny.data.map((y, j) => (
-            <PrimaryMenuMenuLink
-              name={y.attributes.Nazev}
-              href={"/" + x.attributes.Url + "/" + y.attributes.Url}
-              child
-              key={j}
-            />
-          ))}
-        </PrimaryMenuMenuLink>
-      ))
-    }
-  </PrimaryMenuChildrenWrapper>
   <PrimaryMenuChildrenWrapper slot="fotky">
     {
       data.stredisko.data.attributes.Fotky.map((x, i) => (

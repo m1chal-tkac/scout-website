@@ -4,6 +4,7 @@ import { type StrapiImage } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
 import GqlQuery from "../../graphql/novinky/[novinka].gql?raw";
 import BlocksRendererClient from "../../components/BlocksRendererClient";
+import type { BlocksContent } from "@strapi/blocks-react-renderer";
 
 export async function getStaticPaths() {
   const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
@@ -32,20 +33,25 @@ export async function getStaticPaths() {
   });
 }
 
-export interface Props {
+interface Props {
   Nazev: string;
-  Text: string;
+  Text: BlocksContent;
   publishedAt: string;
   Obrazek: StrapiImage;
   Stredisko: string;
   Popis: string;
 }
 
-const { Nazev, Text, publishedAt, Obrazek, Stredisko, Popis } = Astro.props;
+interface Params {
+  novinka: string;
+}
+
+const { Nazev, Text, publishedAt, Obrazek, Stredisko, Popis } =
+  Astro.props as Props;
 
 const date = new Date(publishedAt);
 
-const novinka = Astro.params.novinka;
+const { novinka } = Astro.params as Params;
 ---
 
 <Layout title={Nazev} topPadding="m">

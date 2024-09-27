@@ -26,18 +26,22 @@ export default defineConfig({
             item.changefreq = "weekly";
             item.priority = 0.9;
             break;
+          case site + "/rozpis-schuzek/":
+            item.changefreq = "monthly";
+            item.priority = 0.8;
+            break;
           default:
             if (item.url.startsWith(site + "/novinky/")) {
               item.changefreq = "yearly";
-              item.priority = 0.6;
+              item.priority = 0.8;
             } else if (
               item.url.substring(site.length + 1).split("/").length === 3
             ) {
               item.changefreq = "yearly";
-              item.priority = 0.7;
+              item.priority = 0.3;
             } else {
               item.changefreq = "monthly";
-              item.priority = 0.8;
+              item.priority = 0.6;
             }
             break;
         }

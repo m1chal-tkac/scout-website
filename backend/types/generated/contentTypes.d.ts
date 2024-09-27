@@ -804,7 +804,7 @@ export interface ApiDruzinaDruzina extends Schema.CollectionType {
     Nazev: Attribute.String & Attribute.Required;
     Url: Attribute.String & Attribute.Required & Attribute.Unique;
     Typ: Attribute.String & Attribute.Required;
-    Popis: Attribute.RichText & Attribute.Required;
+    Popis: Attribute.Blocks & Attribute.Required;
     Kontakty: Attribute.Component<'default.kontakt', true> & Attribute.Required;
     oddil: Attribute.Relation<
       'api::druzina.druzina',
@@ -842,8 +842,8 @@ export interface ApiJedenVedouciJedenVedouci extends Schema.CollectionType {
   attributes: {
     Fotka: Attribute.Media & Attribute.Required;
     Jmeno: Attribute.String & Attribute.Required;
-    Email: Attribute.Email & Attribute.Required & Attribute.Unique;
-    Telefon: Attribute.String & Attribute.Required & Attribute.Unique;
+    Email: Attribute.Email & Attribute.Unique;
+    Telefon: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -917,7 +917,7 @@ export interface ApiOddilOddil extends Schema.CollectionType {
     Nazev: Attribute.String & Attribute.Required;
     Url: Attribute.String & Attribute.Required & Attribute.Unique;
     Typ: Attribute.String & Attribute.Required;
-    Popis: Attribute.RichText & Attribute.Required;
+    Popis: Attribute.Blocks & Attribute.Required;
     Kontakty: Attribute.Component<'default.kontakt', true> & Attribute.Required;
     novinky: Attribute.Relation<
       'api::oddil.oddil',
@@ -944,6 +944,35 @@ export interface ApiOddilOddil extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::oddil.oddil',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRozpisSchuzekRozpisSchuzek extends Schema.SingleType {
+  collectionName: 'rozpisy_schuzek';
+  info: {
+    singularName: 'rozpis-schuzek';
+    pluralName: 'rozpisy-schuzek';
+    displayName: 'Rozpis sch\u016Fzek';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Text: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rozpis-schuzek.rozpis-schuzek',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rozpis-schuzek.rozpis-schuzek',
       'oneToOne',
       'admin::user'
     > &
@@ -1004,7 +1033,7 @@ export interface ApiUvodniStrankaUvodniStranka extends Schema.SingleType {
   attributes: {
     Obrazek: Attribute.Media & Attribute.Required;
     Slogan: Attribute.String & Attribute.Required;
-    Popis: Attribute.RichText & Attribute.Required;
+    Popis: Attribute.Blocks & Attribute.Required;
     iCalUrl: Attribute.String;
     Kontakty: Attribute.Component<'default.kontakt', true> & Attribute.Required;
     Klubovny: Attribute.Component<'default.klubovna', true> &
@@ -1050,6 +1079,7 @@ declare module '@strapi/types' {
       'api::jeden-vedouci.jeden-vedouci': ApiJedenVedouciJedenVedouci;
       'api::novinka.novinka': ApiNovinkaNovinka;
       'api::oddil.oddil': ApiOddilOddil;
+      'api::rozpis-schuzek.rozpis-schuzek': ApiRozpisSchuzekRozpisSchuzek;
       'api::stredisko.stredisko': ApiStrediskoStredisko;
       'api::uvodni-stranka.uvodni-stranka': ApiUvodniStrankaUvodniStranka;
     }

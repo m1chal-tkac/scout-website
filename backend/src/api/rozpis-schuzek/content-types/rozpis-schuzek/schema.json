@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "rozpisy_schuzek",
+  "info": {
+    "singularName": "rozpis-schuzek",
+    "pluralName": "rozpisy-schuzek",
+    "displayName": "Rozpis schůzek"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Text": {
+      "type": "blocks"
+    }
+  }
+}

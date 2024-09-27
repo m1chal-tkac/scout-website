@@ -26,12 +26,12 @@
     },
     "Email": {
       "type": "email",
-      "required": true,
+      "required": false,
       "unique": true
     },
     "Telefon": {
       "type": "string",
-      "required": true,
+      "required": false,
       "unique": true,
       "regex": "^\\d{3} \\d{3} \\d{3}$"
     }

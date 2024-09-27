@@ -31,8 +31,8 @@ export default function Contact({
       <h1 className={h5}>{Jmeno}</h1>
       <h2 className="mb-2">{Funkce}</h2>
       <address className="not-italic">
-        <p className="mb-1">{Telefon}</p>
-        <p>{Email}</p>
+        <p className="mb-1">{Telefon || "-"}</p>
+        <p>{Email || "-"}</p>
       </address>
     </article>
   );

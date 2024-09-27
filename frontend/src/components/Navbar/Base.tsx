@@ -32,12 +32,7 @@ export default function Base({
           {secondaryMenu}
           <PrimaryMenu>
             <PrimaryMenuLink name="Domů" action="/" />
-            <PrimaryMenuLink
-              name="Organizace"
-              action={{ menu: primaryMenu, setMenu: setPrimaryMenu }}
-            >
-              {organizace}
-            </PrimaryMenuLink>
+            <PrimaryMenuLink name="Schůzky" action="/rozpis-schuzek" />
             <PrimaryMenuLink name="Novinky" action="/novinky" />
             <PrimaryMenuLink
               name="Fotky"

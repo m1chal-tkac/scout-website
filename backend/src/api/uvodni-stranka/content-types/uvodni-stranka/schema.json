@@ -16,16 +16,14 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "Slogan": {
       "type": "string",
       "required": true
     },
     "Popis": {
-      "type": "richtext",
+      "type": "blocks",
       "required": true
     },
     "iCalUrl": {
@@ -55,9 +53,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     }
   }
 }

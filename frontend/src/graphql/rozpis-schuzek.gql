@@ -1,0 +1,9 @@
+{
+  rozpisSchuzek {
+    data {
+      attributes {
+        Text
+      }
+    }
+  }
+}
