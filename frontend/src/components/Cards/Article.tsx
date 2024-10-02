@@ -7,7 +7,6 @@ interface Article {
   Nazev: string;
   Popis: string;
   Big?: boolean;
-  Published?: string;
 }
 
 export default function Article({
@@ -16,9 +15,7 @@ export default function Article({
   Nazev,
   Popis,
   Big,
-  Published,
 }: Article) {
-  const date = Date ? new Date(Published) : undefined;
 
   return (
     <a
@@ -29,11 +26,6 @@ export default function Article({
     >
       <article className={`flex items-center mx-4 mt-4 flex-col`}>
         {Big && <h1 className={h1_center}>{Nazev}</h1>}
-        {Big && date && (
-          <p className="mb-3 mx-auto">
-            {date.getDate()}.{date.getMonth() + 1}. {date.getFullYear()}
-          </p>
-        )}
         <img
           loading="lazy"
           src={

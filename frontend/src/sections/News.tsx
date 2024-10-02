@@ -73,7 +73,6 @@ export default function News({ data, Big }: NewsWithSwitchMenu) {
                   Url={y.attributes.Url}
                   Obrazek={y.attributes.Obrazek}
                   Popis={y.attributes.Popis}
-                  Published={y.attributes.publishedAt}
                 />
               ))}
             </>

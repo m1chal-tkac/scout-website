@@ -49,8 +49,6 @@ interface Params {
 const { Nazev, Text, publishedAt, Obrazek, Stredisko, Popis } =
   Astro.props as Props;
 
-const date = new Date(publishedAt);
-
 const { novinka } = Astro.params as Params;
 ---
 
@@ -95,9 +93,6 @@ const { novinka } = Astro.params as Params;
     <h1 class={h1_center + " px-10"}>
       {Nazev}
     </h1>
-    <p class="mb-3 mx-auto">
-      {date.getDate()}.{date.getMonth() + 1}. {date.getFullYear()}
-    </p>
     <img
       src={import.meta.env.PUBLIC_STRAPI +
         (Obrazek.data.attributes.formats.large?.url ||
