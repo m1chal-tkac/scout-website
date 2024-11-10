@@ -60,7 +60,7 @@ export default function BlockRendererDescription({
             link: ({ children, url }) => (
               <a
                 href={url}
-                target="_blank"
+                target={url.startsWith("http") ? "_blank" : "_self"}
                 className="text-primary-200 underline"
               >
                 {children}
