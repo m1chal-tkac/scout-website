@@ -25,7 +25,7 @@ export default function Section({
       {id && <div id={id} className="absolute -top-12" />}
       {children}
       {buttons && (
-        <div className="flex justify-center w-full space-x-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center w-full space-y-4 sm:space-y-0 sm:space-x-4">
           {buttons.map(({ text, url }) => (
             <a
               href={url}
