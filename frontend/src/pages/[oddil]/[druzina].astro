@@ -43,5 +43,8 @@ const { Nazev, Popis, Kontakty } = Astro.props;
 
 <Layout title={`Skautská družina ${Nazev}`}>
   <BlockRendererDescription Text={Popis} hideButton />
-  <Contacts data={Kontakty} />
+  <Contacts
+    buttons={[{ text: "Všechny kontakty", url: "/kontakty" }]}
+    data={Kontakty}
+  />
 </Layout>

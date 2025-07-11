@@ -142,7 +142,13 @@ const description = `Jsme skautské středisko ${
   <News client:idle data={novinky} />
   <Events client:idle oddily={data.oddily} />
   <Units data={data.oddily} />
-  <Contacts data={data.uvodniStranka.data.attributes.Kontakty} />
+  <Contacts
+    buttons={[
+      { text: "Všechny kontakty", url: "/kontakty" },
+      { text: "Pomoc a dary", url: "/kontakty#pomoc-a-dary" },
+    ]}
+    data={data.uvodniStranka.data.attributes.Kontakty}
+  />
   <ClubHouse client:idle data={data.uvodniStranka.data.attributes.Klubovny} />
   <Sponsors data={data.uvodniStranka.data.attributes.Sponzori} />
 </Layout>

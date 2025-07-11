@@ -13,10 +13,14 @@ export function CalendarEvent({ summary, start, end, color }: EventProps) {
     end.getMonth() + 1
   }. ${end.getFullYear()}`;
 
+  const _endTime = new Date(+end + 1);
+
   const startTime = `${start.getHours()}:${("0" + start.getMinutes()).slice(
     -2
   )}`;
-  const endTime = `${end.getHours()}:${("0" + end.getMinutes()).slice(-2)}`;
+  const endTime = `${_endTime.getHours()}:${("0" + _endTime.getMinutes()).slice(
+    -2
+  )}`;
 
   const date =
     startDate === endDate

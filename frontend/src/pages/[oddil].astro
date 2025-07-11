@@ -89,5 +89,5 @@ const description = `Jsme skautský oddíl ${Nazev}. Máme ${druziny.data.length
   <BlockRendererDescription Text={Popis} />
   <News client:idle data={novinky} />
   <Units oddilUrl={oddil} data={druziny} />
-  <Contacts data={Kontakty} />
+  <Contacts buttons={[{text: "Všechny kontakty", url: "/kontakty"}]} data={Kontakty} />
 </Layout>

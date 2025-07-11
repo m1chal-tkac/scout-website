@@ -35,6 +35,26 @@
             }
           }
         }
+        PomocADary {
+          Funkce
+          vedouci {
+            data {
+              attributes {
+                Fotka {
+                  data {
+                    attributes {
+                      url
+                      formats
+                    }
+                  }
+                }
+                Jmeno
+                Telefon
+                Email
+              }
+            }
+          }
+        }
       }
     }
   }

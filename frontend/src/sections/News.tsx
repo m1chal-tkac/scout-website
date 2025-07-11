@@ -37,8 +37,7 @@ export default function News({ data, Big }: NewsWithSwitchMenu) {
 
   return (
     <Section
-      button={Big ? undefined : "Všechny Novinky"}
-      url="/novinky"
+      buttons={Big ? undefined : [{ text: "Všechny Novinky", url: "/novinky" }]}
       noInnerPadding
     >
       <h1 className={h1_center}>Novinky</h1>

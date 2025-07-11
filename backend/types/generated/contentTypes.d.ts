@@ -1040,6 +1040,8 @@ export interface ApiUvodniStrankaUvodniStranka extends Schema.SingleType {
       Attribute.Required;
     Sponzori: Attribute.Component<'default.sponzor', true>;
     SocialMediaObrazek: Attribute.Media & Attribute.Required;
+    PomocADary: Attribute.Component<'default.kontakt', true> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

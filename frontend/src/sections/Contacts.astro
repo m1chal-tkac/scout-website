@@ -6,8 +6,12 @@ import { h1_cards_section } from "../components/typography";
 import { type StrapiImage } from "../customTypes";
 
 export interface Props {
+  id?: string;
   heading?: string;
-  hideButton?: boolean;
+  buttons?: {
+    text: string;
+    url: string;
+  }[];
   data: {
     Funkce: string;
     vedouci: {
@@ -23,17 +27,15 @@ export interface Props {
   }[];
 }
 
+const id = Astro.props.id;
 const data = Astro.props.data;
 const heading = Astro.props.heading;
-const hideButton = Astro.props.hideButton;
+const buttons = Astro.props.buttons;
 ---
 
 {
   data.length > 0 && (
-    <Section
-      button={hideButton ? undefined : "Všechny Kontakty"}
-      url={hideButton ? undefined : "/kontakty"}
-    >
+    <Section id={id} buttons={buttons}>
       <h1 class={h1_cards_section}>{heading ? heading : "Kontakty"}</h1>
       <FlexWrapper>
         {data.map((x) => (

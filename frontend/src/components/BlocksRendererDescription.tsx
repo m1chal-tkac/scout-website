@@ -15,8 +15,9 @@ export default function BlockRendererDescription({
   if (!Text) return null;
   return (
     <Section
-      button={!hideButton && "Rozpis schůzek"}
-      url={!hideButton && "/rozpis-schuzek"}
+      buttons={
+        !hideButton && [{ text: "Rozpis schůzek", url: "/rozpis-schuzek" }]
+      }
     >
       <div className="max-w-xl w-full mx-auto flex flex-col items-center mb-8">
         <BlocksRenderer

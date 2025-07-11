@@ -16,7 +16,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Slogan": {
       "type": "string",
@@ -53,7 +55,15 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "PomocADary": {
+      "type": "component",
+      "repeatable": true,
+      "component": "default.kontakt",
+      "required": true
     }
   }
 }

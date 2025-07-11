@@ -70,9 +70,13 @@ data.druziny.data.forEach((x) => {
   </Section>
   <Contacts
     heading="Středisko"
-    hideButton
     data={data.uvodniStranka.data.attributes.Kontakty}
   />
-  <Contacts heading="Vedoucí oddílů" hideButton data={vedouciOddilu} />
+  <Contacts heading="Vedoucí oddílů" data={vedouciOddilu} />
   <ContactsWithTwoSubmenus client:load data={radci} />
+  <Contacts
+    id="pomoc-a-dary"
+    heading="Pomoc a dary"
+    data={data.uvodniStranka.data.attributes.PomocADary}
+  />
 </Layout>
