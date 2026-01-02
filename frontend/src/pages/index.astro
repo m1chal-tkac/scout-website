@@ -9,6 +9,7 @@ import Sponsors from "../sections/Sponsors.astro";
 import Units from "../sections/Units.astro";
 import GqlQuery from "../graphql/index.gql?raw";
 import BlocksRendererDescription from "../components/BlocksRendererDescription.tsx";
+import Hero from "../components/Hero";
 
 const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
   method: "POST",
@@ -96,16 +97,7 @@ const description = `Jsme skautské středisko ${
 ---
 
 <Layout topPadding="no">
-  <link
-    rel="preload"
-    href={import.meta.env.PUBLIC_STRAPI +
-      data.uvodniStranka.data.attributes.Obrazek.data.attributes.url}
-    as="image"
-    slot="head"
-  />
-
   <meta name="description" content={description} slot="head" />
-
   <meta
     property="og:title"
     content={`Skautské středisko ${data.stredisko.data.attributes.Nazev}`}
@@ -121,23 +113,12 @@ const description = `Jsme skautské středisko ${
     slot="head"
   />
 
-  <div slot="outside" class="min-h-full w-full relative mb-24">
-    <StrapiPicture
-      image={data.uvodniStranka.data.attributes.Obrazek}
-      className="max-w-[100vw] w-[96rem] absolute left-1/2 -translate-x-1/2 h-full object-cover md:px-10"
-    />
-    <h1
-      class="font-skautbold lg:text-6xl md:text-5xl text-4xl text-white absolute top-1/2 left-1/2 -translate-x-1/2 text-center w-full"
-    >
-      {data.uvodniStranka.data.attributes.Slogan}
-    </h1>
-    <div
-      class="w-max flex items-center absolute left-1/2 bottom-8 -translate-x-1/2"
-    >
-      <img src="/ikony/sipka-dolu.svg" alt="šipka dolů" class="mr-4 h-8 w-8" />
-      <p class="font-bold text-white text-lg">Posuňtě dolů</p>
-    </div>
-  </div>
+  <Hero
+    slot="outside"
+    Slogan={data.uvodniStranka.data.attributes.Slogan}
+    Obrazky={data.uvodniStranka.data.attributes.Obrazky}
+    client:idle
+  />
   <BlocksRendererDescription Text={data.uvodniStranka.data.attributes.Popis} />
   <News client:idle data={novinky} />
   <Events client:idle oddily={data.oddily} />

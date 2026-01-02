@@ -2,7 +2,7 @@
   uvodniStranka {
     data {
       attributes {
-        Obrazek {
+        Obrazky {
           data {
             attributes {
               url

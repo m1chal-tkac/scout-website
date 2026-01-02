@@ -1031,7 +1031,7 @@ export interface ApiUvodniStrankaUvodniStranka extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    Obrazek: Attribute.Media & Attribute.Required;
+    Obrazky: Attribute.Media & Attribute.Required;
     Slogan: Attribute.String & Attribute.Required;
     Popis: Attribute.Blocks & Attribute.Required;
     iCalUrl: Attribute.String;
