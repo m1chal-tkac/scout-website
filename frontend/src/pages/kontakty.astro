@@ -6,6 +6,7 @@ import Section from "../components/Section";
 import Map from "../components/Map";
 import Contacts from "../sections/Contacts.astro";
 import ContactsWithTwoSubmenus from "../sections/ContactsWithTwoSubmenus";
+import Sponsors from "../sections/Sponsors.astro";
 
 const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
   method: "POST",
@@ -79,4 +80,5 @@ data.druziny.data.forEach((x) => {
     heading="Pomoc a dary"
     data={data.uvodniStranka.data.attributes.PomocADary}
   />
+  <Sponsors data={data.uvodniStranka.data.attributes.Sponzori} />
 </Layout>

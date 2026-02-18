@@ -55,6 +55,18 @@
             }
           }
         }
+        Sponzori {
+          Nazev
+          Odkaz
+          Obrazek {
+            data {
+              attributes {
+                url
+                formats
+              }
+            }
+          }
+        }
       }
     }
   }
