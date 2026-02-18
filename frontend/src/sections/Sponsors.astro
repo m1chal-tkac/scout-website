@@ -19,16 +19,16 @@ const data = Astro.props.data;
   data.length > 0 && (
     <Section>
       <h1 class={h1_cards_section}>Naši sponzoři</h1>
-      <FlexWrapper>
+      <FlexWrapper className="-mb-8">
         {data.map((x) => (
-          <a href={x.Odkaz} target="_blank" class="mx-4 mb-8 lg:mb-0 last:mb-0">
+          <a href={x.Odkaz} target="_blank" class="mx-4 mb-8 last:mb-0">
             <img
               loading="lazy"
               src={
                 import.meta.env.PUBLIC_STRAPI + x.Obrazek.data.attributes.url
               }
               alt={x.Nazev}
-              class="w-60 h-24 object-contain"
+              class="h-24"
             />
           </a>
         ))}
