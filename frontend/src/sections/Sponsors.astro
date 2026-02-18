@@ -19,9 +19,9 @@ const data = Astro.props.data;
   data.length > 0 && (
     <Section>
       <h1 class={h1_cards_section}>Naši sponzoři</h1>
-      <FlexWrapper className="-mb-8">
+      <FlexWrapper className="-mb-8 flex-col items-center md:flex-row">
         {data.map((x) => (
-          <a href={x.Odkaz} target="_blank" class="mx-4 mb-8 last:mb-0">
+          <a href={x.Odkaz} target="_blank" class="mx-10 mb-10 last:mb-0">
             <img
               loading="lazy"
               src={
