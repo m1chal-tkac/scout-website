@@ -19,6 +19,8 @@ const response = await fetch(import.meta.env.PUBLIC_STRAPI + "/graphql", {
               CisloStrediska
               Ico
               CisloUctu
+              PopisDalsiUcet
+              DalsiUcet
               Email
               SocialniSite {
                 Typ
@@ -53,6 +55,8 @@ const data = Json.data;
         unitNumber={data.stredisko.data.attributes.CisloStrediska}
         ICO={data.stredisko.data.attributes.Ico}
         bankAccountNumber={data.stredisko.data.attributes.CisloUctu}
+        additionalBankAccountDescription={data.stredisko.data.attributes.PopisDalsiUcet}
+        additionalBankAccountNumber={data.stredisko.data.attributes.DalsiUcet}
         email={data.stredisko.data.attributes.Email}
       />
       <Logo />
