@@ -49,7 +49,8 @@
     },
     "DalsiUcet": {
       "type": "string",
-      "required": false
+      "required": false,
+      "regex": "^(\\d{6}-)?\\d{10}\\/\\d{4}$"
     },
     "Email": {
       "type": "email",
