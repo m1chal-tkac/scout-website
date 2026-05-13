@@ -43,6 +43,14 @@
       "required": true,
       "regex": "^(\\d{6}-)?\\d{10}\\/\\d{4}$"
     },
+    "PopisDalsiUcet": {
+      "type": "string",
+      "required": false
+    },
+    "DalsiUcet": {
+      "type": "string",
+      "required": false
+    },
     "Email": {
       "type": "email",
       "required": true

@@ -4,6 +4,8 @@ interface Address {
   unitNumber: string;
   ICO: string;
   bankAccountNumber: string;
+  additionalBankAccountDescription?: string | null;
+  additionalBankAccountNumber?: string | null;
   email: string;
 }
 
@@ -13,6 +15,8 @@ export default function Address({
   unitNumber,
   ICO,
   bankAccountNumber,
+  additionalBankAccountDescription,
+  additionalBankAccountNumber,
   email,
 }: Address) {
   return (
@@ -22,6 +26,12 @@ export default function Address({
       <p className="mb-2">číslo střediska: {unitNumber}</p>
       <p className="mb-2">ičo: {ICO}</p>
       <p className="mb-2">číslo účtu: {bankAccountNumber}</p>
+      {additionalBankAccountNumber && (
+        <p className="mb-2">
+          {additionalBankAccountDescription || "další účet"}:{" "}
+          {additionalBankAccountNumber}
+        </p>
+      )}
       <p className="mb-2">email: {email}</p>
     </address>
   );
